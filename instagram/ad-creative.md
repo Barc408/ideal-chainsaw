@@ -1,118 +1,136 @@
 # BARC Builder Group — Paid Ad Creative Brief
 
-Strategy: don't invent ads. Boost the top 20% of organic posts with clear CTAs. Test 3 creative angles against 2 audiences. Kill losers fast.
+Audience: Bay Area luxury homeowners.
+Strategy: don't invent ads. Boost the top 20% of organic content with sharp CTAs, then retarget the warm pool with lead magnets. In luxury, you want precision over reach.
 
 ---
 
 ## Campaign structure (Meta Ads Manager)
 
-- **Objective:** Engagement (for awareness test) or Lead (for checklist/group opt-ins).
-- **Daily budget:** $20/day per ad set for 5 days, then consolidate on the winner.
-- **Placement:** IG Reels + IG Feed only. Skip Audience Network and FB placements for now.
-- **Optimization:** landing page views (if driving to signup) or ThruPlay (if reel).
+- **Objective:** Lead (for guide / consult) or Engagement (for brand-lift pieces).
+- **Daily budget:** $30–$50/day per ad set for 7 days. Then consolidate.
+- **Placement:** IG Feed + IG Reels + Facebook Feed (homeowners 45+ still live on FB). Skip Audience Network.
+- **Optimization:** Landing page views (for consult) or Leads (if using Meta's native lead form — easier in this niche).
 
 ---
 
 ## Audiences
 
-### Audience A — Lookalike of existing group members
-- 1% lookalike in [state], built from your current group email list.
-- Best for recruit-focused creative.
+### Audience A — Geo + home-value (top of funnel)
+- **Geo:** zip codes covering Los Altos, Palo Alto, Los Gatos, Saratoga, Campbell + Monte Sereno, Portola Valley, Woodside, Atherton (overflow wealthy pockets).
+- **Interests:** Luxury goods, Architectural Digest, Dwell, Dezeen, Sotheby's International Realty, Compass, Richard Meier, John Lautner.
+- **Demographics:** Household income top 10% (Meta's approximation), age 38–65, homeowners.
 
-### Audience B — Interest stack
-- Interests: construction management, homebuilder, carpentry, Pro tools, Milwaukee Tool, DeWalt.
-- Job titles: general contractor, framer, project manager (construction), carpenter.
-- Location: [state] + adjacent.
-- Age: 22–55. Gender: all.
-- Best for awareness / top-of-funnel creative.
+### Audience B — Retargeting (warm)
+- Website visitors (last 90 days).
+- IG/FB engagers (last 365 days).
+- Video-viewers who watched ≥ 50% of any BARC reel.
+- Lead-magnet openers who didn't book a call.
 
-### Audience C — Retargeting
-- Anyone who visited your link-in-bio landing page in the last 30 days.
-- Or anyone who engaged with IG/FB profile in the last 90 days.
-- Serve them the lead magnet ad.
+### Audience C — Lookalike (after you have data)
+- 1% lookalike of your booked-consult list (once you have 50+ emails or phone numbers).
+- 1% lookalike of your Legacy Guide downloaders.
+- Target: Bay Area + 9-county radius.
+
+Rule: don't run Audience C until you have real conversion data. Lookalikes trained on bad leads scale bad leads.
 
 ---
 
-## Creative A — Recruit-to-group (best for audience A)
+## Creative A — Aspirational brand (top of funnel, Audience A)
 
-**Format:** 9:16 reel, 15s.
-**Hook text on screen (0–1.5s):** "Builders in [City] — read this."
+**Format:** 9:16 reel, 30–45s.
+**Hook text on screen (0–1.5s):** "You have the vision. We build the legacy."
 **Script:**
-- 0–2s: founder to camera, work truck background. "If you swing a hammer in [City], you should know about this group."
-- 3–8s: B-roll of jobsite + group screenshots. "We share jobsite tips, tool reviews, and the business plays nobody posts publicly."
-- 9–12s: "It's free. And it's the best builders in [City]."
-- 13–15s: text card — "Tap 'Learn More' to join."
+- 0–4s: golden-hour exterior of a completed Los Altos home. No text yet.
+- 5–12s: cinematic cuts — foyer, kitchen, backyard — with tiny text overlays of the design intent ("Cathedral light from every room," "Seamless indoor-outdoor living").
+- 13–22s: a single 3-second shot of homeowners walking in for the first time.
+- 23–30s: BARC logo + "Custom homes in Los Altos, Palo Alto, Los Gatos, Saratoga, Campbell."
+- 31–35s: CTA card — "Start your build → Learn More."
 **CTA button:** Learn More.
-**Primary text (caption):** The BARC builder group is where [City] builders actually swap what works. Jobsite tips, subs who show up, software worth the money. Free to join. 👇
-**Headline:** Join the BARC builder group.
-**Description:** 20+ years. Builders only.
+**Primary text:** Luxury custom homes and full remodels in the Bay Area. From raw parcel to ribbon-cutting, without the chaos. Start your conversation → [link]
+**Headline:** Legacy homes. Bay Area.
+**Description:** BARC Builder Group.
 
 ---
 
-## Creative B — Lead magnet (best for audience B)
+## Creative B — Lead magnet (mid-funnel, Audience A + B)
 
-**Format:** single image or 3-slide carousel.
-**Slide 1 (hook):** "47 items every framer should walk before the inspector shows up." Subhead: "Free checklist."
-**Slide 2:** Screenshot of page 2 of the PDF (just enough to tease value).
-**Slide 3:** "Tap below. Enter your email. Get it in 30 seconds."
+**Format:** 4-slide carousel or static image ad.
+**Slide 1 (hook):** "First 90 Days: what every Bay Area homeowner should decide before hiring a builder." Subhead: "Free guide from BARC Builder Group."
+**Slide 2:** Cover shot of the PDF on a tablet sitting on a set of architectural plans.
+**Slide 3:** 3-bullet tease: "Timeline by city," "10 questions to ask every builder," "Feasibility budget framework."
+**Slide 4:** CTA: "Download free. No obligation."
 **CTA button:** Download.
-**Primary text (caption):** The 5 most common reasons a rough framing inspection fails — and the 42 other things we check before calling. Free PDF, no fluff.
-**Headline:** Free framing checklist.
-**Description:** From the BARC builder group.
+**Primary text:** The biggest regrets we hear from clients are decisions made before construction even starts. Our free guide fixes that.
+**Headline:** First 90 Days — Free Guide.
+**Description:** For Bay Area homeowners.
 
 ---
 
-## Creative C — Boosted organic (best for audience B)
+## Creative C — Retargeting (warm pool, Audience B)
 
-Take your top-performing organic reel (use reel #1 or #2 from `reels-scripts.md`) and boost it as-is. Meta has a "Boost post" shortcut from the IG app — use only if:
-- Reel already has 3x your average reach organically.
-- Save rate > 5%.
-- You're ok with the native caption (ad caption = original caption).
-
-**Budget:** $50 over 6 days.
-**Goal:** profile visits.
-**Audience:** auto-targeting lets Meta expand from engaged followers outward.
+**Format:** 9:16 reel, 20s.
+**Hook text on screen:** "If you're still comparing builders, ask this question."
+**Script:**
+- 0–2s: founder to camera, tight shot.
+- 3–14s: "The question most luxury homeowners forget: 'Who, by name, will be my project manager every week?' If your builder can't answer, keep shopping."
+- 15–20s: CTA — "Book a 20-min discovery call with BARC → Learn More."
+**CTA button:** Book Now.
+**Primary text:** You've seen the houses. You've read the guide. Next step: a 20-min conversation. No pitch.
+**Headline:** 20 min. Zero pitch.
+**Description:** Book a discovery call.
 
 ---
 
-## Headline / hook A/B tests (swap these into any creative)
+## Headline / hook A/B tests (swap into any creative)
 
 | Angle | Variant 1 | Variant 2 |
 |---|---|---|
-| Identity | "Builders in [City] — this is for you." | "If you swing a hammer for a living, read this." |
-| Pain | "Red-tagged framing inspections cost $4k+ each." | "The mistake on 9 out of 10 new builds." |
-| Community | "The best builders in [City] are already here." | "Free group. Real builders. No gurus." |
-| Outcome | "Pass rough inspection the first time." | "From dirt to keys in 90 days — here's how." |
+| Identity | "For Bay Area homeowners planning a custom build." | "Luxury homes in Los Altos, Palo Alto, Los Gatos." |
+| Pain | "The cheapest bid almost always costs the most." | "The permit timeline your builder won't tell you." |
+| Aspiration | "You have the vision. We build the legacy." | "From raw parcel to ribbon-cutting." |
+| Proof | "10+ homes delivered in [city]. Zero surprises." | "Built on referral. Trusted by families." |
 
-Run two hooks side-by-side in the same ad set. Kill the loser after 3 days if statistical separation is clear.
+Run two hooks side-by-side in the same ad set. Kill the loser after 5 days if statistical separation is clear.
 
 ---
 
 ## Landing page requirements (where the ad sends them)
 
-Don't send paid traffic to link-in-bio. Build a purpose page.
+Don't send paid traffic to link-in-bio. Build purpose pages on your own domain.
 
-- **Above fold:** headline matching the ad hook, one photo of finished work or crew, single CTA button.
-- **One form field:** email only (plus optional phone). Every extra field drops conversion 7%.
-- **Social proof:** 3 member testimonials or 3 project logos.
-- **FAQ:** "Is it free?" "Who's it for?" "What happens after I join?"
-- **Load time:** under 2s on 4G. Test with PageSpeed Insights.
-- **Pixel:** Meta pixel firing on pageview + lead event.
+- **Above fold:** headline matching the ad hook, one photo of finished work, single CTA button.
+- **Simplified lead form:** name + email + city + timeline (4 fields max).
+- **Social proof:** 3 client testimonials with first name + city (or initials), architect partners, press logos if you have them.
+- **FAQ:** "What's your timeline?" "What's your typical project size?" "Do you work with our architect?" "How do we start?"
+- **Load time:** under 2s on 4G.
+- **Pixel:** Meta pixel on pageview + lead event + schedule event if Calendly embedded.
 
 ---
 
 ## Budget & scaling rules
 
-- **Week 1:** $20/day per creative × 3 creatives = $60/day, $420 total. Test.
-- **Week 2:** cut the 2 losers, scale the winner to $50/day.
-- **Week 3:** duplicate the winning ad set, test a new audience. Scale winner to $100/day if CPL stays under target.
-- **Target CPL (cost per lead):** $2–$4 for email opt-in, $8–$15 for group signup.
-- **Kill rule:** any ad with spend > 3x average CPL and zero leads — pause it.
+- **Week 1:** $30/day × 2 creatives (A + B) × 7 days = $420. Test.
+- **Week 2:** Kill the weaker creative. Add Creative C to retarget Week-1 engagers. Total $60/day.
+- **Week 3–4:** Scale winner to $100/day. Launch Audience C (lookalike) if you have 50+ leads.
+- **Target CPL (cost per lead — guide download):** $15–$35.
+- **Target CPBC (cost per booked call):** $200–$500. In this niche that's cheap — one closed build returns 1,000x that.
+- **Kill rule:** any ad with spend > 3× target CPL and zero leads — pause it.
 
 ---
 
 ## Creative refresh cadence
 
 - Every 14 days, swap hooks.
-- Every 30 days, swap the creative itself. Ad fatigue kicks in fast in the builder niche — small, tight audience.
-- Keep a running folder of raw B-roll (jobsite walks, tool close-ups, crew shots) so the editor can cut new variants weekly without a re-shoot.
+- Every 30 days, shoot new B-roll. Luxury viewers burn out on repeated creative fast — especially on Reels.
+- Keep a running folder of raw footage by project (exterior, kitchen, primary suite, landscape, owner walk-in moment) so the editor can cut new variants weekly without a re-shoot.
+
+---
+
+## What NOT to do
+
+- Don't run homeowner-facing ads with stock footage. Luxury Bay Area viewers spot generic in 2 seconds.
+- Don't target by "interest: construction." That reaches contractors, not clients.
+- Don't lead with price. If you put a number up, you're being shopped against cheaper — and you'll lose.
+- Don't use aggressive CTAs ("Last chance!" "Book now before we fill up!"). Scarcity reads as desperation in this market.
+- Don't auto-boost posts without a plan. The boost button is fine for a proven reel, bad for anything untested.

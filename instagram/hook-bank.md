@@ -1,94 +1,96 @@
 # BARC Builder Group — Hook Bank (50 hooks)
 
-First 1.5 seconds decides whether the viewer watches or scrolls. Rotate these hooks across Reels, carousel covers, and captions.
+Audience: Bay Area luxury homeowners in Los Altos, Palo Alto, Los Gatos, Saratoga, Campbell.
+First 1.5 seconds decides whether the viewer watches or scrolls. Rotate these across reels, carousel covers, and captions.
 
 ## Curiosity
 
-1. "This $40 fix saves $4,000 in callbacks."
-2. "The code violation on 9 out of 10 new builds."
-3. "Framers never talk about this — until it fails inspection."
-4. "Three mistakes in this photo. Can you find them?"
-5. "Why pros shim behind the hinge, not between the door."
+1. "Everyone asks 'how much per square foot?' That's the wrong question."
+2. "The one decision that decides your entire build — and most clients make it last."
+3. "We've built in every city from Los Altos to Campbell. Here's what surprised us."
+4. "There's a reason good Bay Area builders are booked 18 months out."
+5. "The question your architect won't ask — but your builder must."
 
-## Big numbers
+## Numbers
 
-6. "14 weeks. 2,400 sqft. Zero change orders."
-7. "$180,000 saved by sequencing two subs differently."
-8. "One hour of planning = 40 hours of rework avoided."
-9. "7 tools under $200 every builder needs."
-10. "90 days from dirt to keys."
+6. "18 months. 8,400 sqft. Zero change orders."
+7. "$2.1M, $2.9M, $3.4M — three bids on the same house. Here's the right one."
+8. "Permits in Palo Alto: 10–16 months. Plan accordingly."
+9. "Window lead times are 16–22 weeks. Pick them at design phase."
+10. "3 bids. 1 contract. 17 decisions that mattered most."
 
 ## Contrarian
 
-11. "Open concept is overrated. Here's what we're framing instead."
-12. "The cheapest bid almost always costs the most."
-13. "Stop buying more trucks. Buy better software."
-14. "Your foreman is wrong about caulk."
-15. "You don't need more leads. You need a better intake form."
+11. "The cheapest bid almost always costs the most."
+12. "Luxury isn't a price tier. It's a specification."
+13. "Your builder shouldn't start next month. If they can, ask why."
+14. "Cost-plus without a GMP is not a contract. It's a hope."
+15. "$/sqft is a lazy number. Ignore it."
 
 ## Problem-hook
 
-16. "If your drywall is cracking at the corners, it's not the drywaller."
-17. "Soft floors above the garage? Here's why."
-18. "Leaky windows are rarely the window."
-19. "Foggy glass in year two means one thing."
-20. "Mold in a new build almost always starts here."
+16. "If your builder's timeline isn't city-specific, ask again."
+17. "Scope creep doesn't happen at framing. It happens at design."
+18. "If you can't read your own line-item budget, nobody can."
+19. "Change orders aren't the problem. Undisclosed change orders are."
+20. "The crack in the wall on year two started at pre-construction."
 
-## Apprentice / learning
+## Aspirational / outcome
 
-21. "What I'd tell my 22-year-old self before I picked up a framing hammer."
-22. "5 things nobody teaches you in year one."
-23. "The fastest way to get promoted on a job site."
-24. "This one habit separates $20/hr from $45/hr."
-25. "Apprentices: memorize these 3 framing dimensions."
+21. "You have the vision. We build the legacy."
+22. "From raw parcel to ribbon-cutting — the way it should feel."
+23. "A home the family waited five years to live in."
+24. "Confidence. Disciplined execution."
+25. "Golden hour on a finished home feels different when you built it."
 
-## Tool / product
+## Process / behind-the-scenes
 
-26. "This tool paid for itself on day one."
-27. "I used to hate this brand. Then I tried the [model]."
-28. "Every builder's truck should have this $29 thing."
-29. "The $900 tool I'd buy again in a heartbeat."
-30. "Stop buying [X]. Buy [Y] instead."
+26. "Walk this Palo Alto build with us — week 9 of 52."
+27. "Here's what our Friday 3 PM owner walk actually looks like."
+28. "One week inside a BARC pre-construction meeting."
+29. "Steel moment frame going in today. Earthquake performance you only see in the bill."
+30. "Our PM's desk this morning. Three cities. Eight active projects."
 
-## Process / behind the scenes
+## Education / lead-magnet
 
-31. "Here's what 5 AM actually looks like for a framing crew."
-32. "Walk a job site with me."
-33. "The 15 minutes that make or break every build day."
-34. "How we run a punch list without anyone yelling."
-35. "The exact schedule we use for a 3-month build."
+31. "Comment PROCESS and we'll send the 7-stage build roadmap."
+32. "Comment BID for our 12-question bid-comparison checklist."
+33. "Comment SEQUENCE for our long-lead item list."
+34. "Comment START for the First-90-Days guide."
+35. "Comment LEGACY for our Bay Area Luxury Build Guide."
 
-## Callback / myth-busting
+## Myth-busting
 
-36. "No, you don't need permits. Wrong."
-37. "Homeowners keep telling us this. It's not true."
-38. "'Cost-plus 10%' isn't what you think it is."
-39. "That TikTok hack will rot your subfloor."
-40. "Your inspector isn't your enemy. Here's why."
+36. "No, 8% contingency is not enough on a remodel. Here's the math."
+37. "'Turnkey' doesn't mean what your builder says it means."
+38. "Your architect is not your project manager. Don't ask them to be."
+39. "You do not need to move out for every remodel. Here's when you do."
+40. "Permits are a skill, not a line item."
 
 ## Emotional / story
 
-41. "They said it couldn't be done in 90 days."
-42. "The moment the family walked into the finished build."
-43. "This is why we build."
-44. "My first solo project almost broke me."
-45. "20 years in and I still learned something this week."
+41. "They walked into the finished foyer and just stood there. That's the moment."
+42. "Five years of vision. Fourteen months of discipline."
+43. "This house survived the October storms. This is why."
+44. "The client said 'this is the first time I've felt calm in 18 months.' That's the job."
+45. "Every legacy home has a Tuesday when everything goes wrong. Here's ours."
 
-## Engagement-bait (tasteful)
+## Engagement (tasteful)
 
-46. "Drop your city 👇 — where are the builders?"
-47. "Tag a foreman who taught you something that stuck."
-48. "Best tool you own — go."
-49. "If you had to pick one trade to run, which one?"
-50. "How are y'all pricing framing in 2026?"
+46. "Drop the city where you'd build your legacy home."
+47. "Tag the architect you'd hire — or already hired — in the Bay Area."
+48. "One finish you splurge on, one you'd cut. Go."
+49. "Design-build or architect-led? What's your take?"
+50. "If you could change one thing about your last remodel — what is it?"
 
 ---
 
 ## Hook engineering rules
 
 - **Under 9 words** on the opening line.
-- **Specific numbers > round numbers** ($1,847 beats $2,000).
-- **Name the loss, not the gain** ("avoid this $4k callback" > "save money").
+- **Specific numbers beat round numbers** ($2.9M beats "mid-seven figures").
+- **Name the decision, not the outcome** ("the question most clients ask wrong" > "how to save money").
 - **No throat-clearing** — skip "Hey guys" / "So today we're…"
-- **Text on screen = spoken line** (sound-off viewers must still get it).
-- **Pattern interrupt in frame** — motion, a close-up, or an unexpected object at 0s.
+- **City keywords** in hook or subhead where natural — helps with IG search.
+- **Text on screen = spoken line** (luxury viewers often scroll sound-off on laptops).
+- **Open on the finished product, not the founder's face** for aspirational reels. Save founder appearances for trust and education pieces.

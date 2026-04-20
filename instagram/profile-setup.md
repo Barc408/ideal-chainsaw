@@ -152,15 +152,15 @@ Review pins every 60 days. Replace whatever pin has the lowest save rate.
 
 ---
 
-## ⚠️ Audience alignment note
+## Audience alignment — done
 
-The rest of the content kit (`reels-scripts.md`, `caption-pack.md`, `hook-bank.md`, `30-day-calendar.md`, `carousel-outlines.md`, `dm-welcome-flow.md`, `lead-magnet-framing-checklist.md`, `ad-creative.md`) was written assuming BARC = a peer group for working builders (framers, GCs, PMs).
+The rest of the content kit has been repointed to **luxury Bay Area homeowners** (the audience your feed actually speaks to):
 
-Your actual audience based on the feed is **luxury Bay Area homeowners** — the people who will hire you to build a $5M+ custom home in Palo Alto. That's a completely different content strategy:
-
-- **Ditch:** "Spot the mistake," "Rookie vs Veteran," "subs-vs-in-house math," "framing checklist lead magnet."
-- **Keep & retune:** Before/After, Day-in-the-life (from the client's perspective), process walkthroughs, finished-home reveals.
-- **Add:** Land-buying tips, architect partnerships, design-decision moments, case studies with real numbers, warranty & after-care stories.
-- **Retune the lead magnet:** replace the framing checklist with a **"Bay Area Luxury Build Guide"** — the same guide your pinned carousel is already teasing.
-
-I can repoint the whole kit to the homeowner audience — just say the word.
+- `reels-scripts.md` — 7 reels on bids, process, permits, reveals, weekly owner walks.
+- `carousel-outlines.md` — 5 carousels: Legacy flagship, 7-stage process, 5 questions to ask a builder, "what $4M buys in Los Altos," Saratoga before/after.
+- `caption-pack.md` — 30 captions grouped: reveals, education, process, thought leadership, community.
+- `hook-bank.md` — 50 hooks tuned for homeowner curiosity, aspiration, and trust.
+- `30-day-calendar.md` — 4-week sequence (positioning → proof → authority → emotion) with homeowner KPIs.
+- `dm-welcome-flow.md` — 6 flows keyed to START / LEGACY / PROCESS / consult requests + qualification signals for founder hand-off.
+- `lead-magnet-legacy-guide.md` (renamed from framing checklist) — 10-page *First 90 Days* guide for pre-hire homeowners.
+- `ad-creative.md` — 3 Meta ads (aspirational, lead magnet, retargeting), 3 audience stacks, landing-page spec, CPL targets.

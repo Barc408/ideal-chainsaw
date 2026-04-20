@@ -1,131 +1,131 @@
 # BARC Builder Group — Caption Pack (30 ready-to-post)
 
-Each caption: hook → body → CTA → hashtags.
-Swap [project name], [city], [subcontractor tag], [handle] as needed.
+Audience: Bay Area luxury homeowners.
+Each caption: hook → body → CTA → hashtags. Swap `[city]`, `[project name]`, `[sqft]`, `[months]`, `[client first name]` as needed.
 
 ---
 
-## Wins & project reveals
+## Finished-home reveals
 
-1. **Closeout day hits different.** 14 weeks, one crew, zero change orders. That's what a clean set of plans and a tight schedule get you. Tag a builder who respects the timeline.
-   `#homebuilder #customhome #constructionlife #barcbuilders`
+1. **A legacy home in [city].** [Sqft] sqft. [Months] months. Every decision, documented. Every detail, delivered. Start your build → link in bio.
+   `#bayareacustomhomes #luxuryhomes #barcbuildergroup`
 
-2. **From dirt to drywall in 60 days.** Not magic — stacked subs, daily huddles, and a PM who doesn't miss. Swipe for the sequence.
-   `#generalcontractor #newconstruction #buildersofinsta`
+2. **Handoff day at [project name].** The family walked in and just stood in the foyer. That quiet moment is why we do this work.
+   `#customhomebuilder #paloaltohomes #luxurylifestyle`
 
-3. **This foundation is the reason the rest is easy.** Square, level, and dry. Everything upstream of framing is where builds die.
-   `#foundation #concrete #construction`
+3. **Five years of vision. Fourteen months of discipline.** [City]'s newest legacy home, delivered on time and on budget. Link in bio.
+   `#losaltoshomes #bayarealuxury #customhomes`
 
-4. **Handoff day.** The family walked into [project name] with tears in their eyes. That's the whole job. Follow for more builds like this.
-   `#customhomes #homebuilder #dreamhome`
+4. **Before / after — same footprint, different life.** Full down-to-studs remodel in [city]. Family stayed on-site the whole time. That's the build we signed up for.
+   `#bayarearemodel #saratogahomes #luxuryrenovation`
 
-5. **Before / After — same footprint, different house.** Full gut, new roofline, new life. Comment GUT for the scope sheet.
-   `#remodel #renovation #beforeandafter`
-
----
-
-## Education / value posts
-
-6. **3 questions every homeowner should ask before signing a build contract.** Lien waivers? Allowance schedule? Change order process? If your builder can't answer cleanly, keep shopping.
-   `#homebuyer #customhome #buildersmart`
-
-7. **Framing rule of thumb: if you can't point to it on the plans, don't build it.** RFIs are cheaper than rework. Every time.
-   `#framing #construction #gccontractor`
-
-8. **Your HVAC contractor should be in the first design meeting, not the last.** Duct runs dictate ceiling heights. We learned this one the hard way.
-   `#hvac #homebuilding #constructionmanagement`
-
-9. **Insulation is the cheapest upgrade you'll never see.** Spend the extra $0.80/sqft. Thank yourself every winter.
-   `#insulation #energyefficient #homebuilder`
-
-10. **Don't buy flooring before rough plumbing.** Transitions change, heights change, thresholds change. Order last, measure twice.
-    `#flooring #construction #builder`
+5. **Golden hour on a finished home feels different when you built it.** [Project name], [city]. Drone pass coming to the feed this week.
+   `#losgatoshomes #customhome #bayareabuilder`
 
 ---
 
-## Behind-the-scenes
+## Education / earning-the-lead content
 
-11. **6:02 AM. Coffee, tailgate, schedule.** Every good build starts with the same 15 minutes.
-    `#jobsite #constructionlife #buildersofinstagram`
+6. **Three bids. $2.1M, $2.9M, $3.4M.** The cheapest was missing the seismic upgrade their lot required. Bids aren't equal. Ask for the line items.
+   `#bayareahomebuilder #customhomes #buildsmart`
 
-12. **Rain day ≠ day off.** Shop day. Sharpen, service, organize. The crews that win are the crews that prep.
-    `#rainyday #construction #craftsman`
+7. **Window lead times are 16–22 weeks.** If your architect and builder aren't aligned by design phase, framing waits. Here's why sequencing matters.
+   `#customhomebuilder #bayareaarchitect #luxurybuild`
 
-13. **The apprentice hung his first door today.** He'll shim a thousand more before he's fast. That's the gig.
-    `#apprenticeship #trades #learnacraft`
+8. **The permit timeline in Palo Alto is 10–16 months.** Los Altos is 8–14. Your builder should quote you by city, not by average.
+   `#paloalto #losaltos #bayareacustomhomes`
 
-14. **Punch list energy.** The last 2% of a build takes 20% of the time. Anyone who tells you otherwise has never closed out.
-    `#punchlist #construction #qualitycontrol`
+9. **Contingency on a remodel should be 15–20%.** Anyone telling you 8% hasn't opened enough walls.
+   `#remodel #bayarealuxury #customrenovation`
 
-15. **Meet the crew.** 4 framers, 2 laborers, 1 PM, zero drama. Send us a ❤ if yours runs the same.
-    `#buildingcrew #constructionteam #homebuilder`
-
----
-
-## Controversial / engagement bait (tasteful)
-
-16. **Hot take: open concept is overrated.** We're framing more walls in 2026 than we did in 2019. Disagree? Fight me in the comments.
-    `#homebuilder #architecture #customhome`
-
-17. **If your builder's giving you a "cost-plus 10%," they're either a saint or setting you up.** Know the difference. Ask for the book.
-    `#costplus #contractor #buildersmart`
-
-18. **Unpopular opinion: the GC who responds fastest wins the job, not the cheapest bid.** Speed = respect. Change my mind.
-    `#generalcontractor #smallbusiness #construction`
-
-19. **Stop. Building. Without. A. Schedule.** A Google Sheet beats vibes every time.
-    `#projectmanagement #construction #homebuilder`
-
-20. **Truss packages are getting nuts.** 38% over 2021. How are y'all pricing framing in 2026?
-    `#trusses #framing #constructioncosts`
+10. **The difference between $650/sqft and $1,900/sqft isn't luck.** It's specification. Hidden-flange windows, slab-to-slab millwork, integrated systems. Luxury is a decision tree.
+    `#luxuryhomes #bayareacustomhomes #architecture`
 
 ---
 
-## Community / follow-driver
+## Process / behind-the-scenes
 
-21. **Drop your city 👇.** We're building a map of the BARC builder group and where the crews are. [city] reppin' here.
-    `#buildersnetwork #generalcontractor #construction`
+11. **Week 9 of 52. Palo Alto.** Steel moment frame going in today. Earthquake performance you only see in the bill — and feel in the next quake.
+    `#paloaltohomes #customhomebuilder #bayareaconstruction`
 
-22. **Tag a builder who taught you something that stuck.** Mine was my foreman saying "measure where the wood is, not where the plan says." Changed everything.
-    `#mentorship #trades #construction`
+12. **Friday. 3 PM. Every week. Every build.** The owner walk is a standing meeting — not a favor. Transparency is a schedule.
+    `#bayareabuilder #customhomes #trustbuilt`
 
-23. **If you could only own one tool for the rest of your career, what is it?** I'll go first: 7¼" worm drive. Old habits.
-    `#tools #construction #craftsman`
+13. **Our PM's desk this morning.** Three cities, eight active projects, one standard. Discipline scales.
+    `#luxurybuilder #bayareaconstruction #behindthescenes`
 
-24. **Builders — what's the best software you're running in 2026?** Estimating, scheduling, or PM. Drop names below.
-    `#constructionsoftware #generalcontractor #buildertech`
+14. **Framing day at [city].** 12-ft ceilings on main level. The moment you see it lifted, you understand what plans never quite show.
+    `#framing #customhome #bayareahomes`
 
-25. **Share this with one person who should be in the BARC builder group.** We're adding members this month.
-    `#buildersnetwork #construction #homebuilder`
-
----
-
-## Shorter / stories-style
-
-26. Measure twice. Cut once. Bill accordingly.
-
-27. Good subs are worth waiting 3 weeks for. Bad ones cost you 3 months.
-
-28. Your crew watches what you tolerate. Tolerate nothing sloppy.
-
-29. Plans change. Professionalism doesn't.
-
-30. Best marketing a builder can do: finish the job, on time, clean site.
+15. **The plan room.** Every project lives here before it lives on the jobsite. Good builds are good decisions, catalogued.
+    `#architecturalplans #customhomes #bayareabuilder`
 
 ---
 
-## Hashtag sets (rotate, don't repeat)
+## Thought leadership / trust-builders
 
-**Core set (always include 3–5):**
-`#homebuilder #customhome #generalcontractor #constructionlife #buildersofinstagram`
+16. **Your first conversation with a builder shouldn't be about price.** It should be about fit. Here's what to ask on that first call.
+    `#customhomebuilder #bayareahomes #howtobuild`
 
-**Craft set:**
-`#framing #trimcarpentry #finishcarpentry #craftsman #trades`
+17. **"Cost-plus" isn't inherently bad. "Cost-plus without a GMP" is.** Here's the difference and why it matters for a $5M+ build.
+    `#bayareacustomhomes #constructioncontracts #buildsmart`
 
-**Client-facing set:**
-`#dreamhome #newconstruction #customhomes #homebuilding #modernhome`
+18. **Luxury isn't a price tier. It's a standard of finish.** A $3M home in Los Gatos can feel luxury. A $12M home can feel hollow. The difference is in the specification.
+    `#luxurydesign #customhomes #bayareahomes`
 
-**Local set (customize):**
-`#[city]builder #[state]homes #[city]construction`
+19. **Design-build works for some clients. Architect-led works for others.** We do both. The question is which one your vision calls for.
+    `#designbuild #architectled #custombuild`
 
-Keep total hashtags to 8–12. More than that looks spammy and underperforms.
+20. **The builders you want to hire are usually booked 12–18 months out.** If someone can start "next month," ask why.
+    `#bayareahomebuilder #luxurybuild #customhomes`
+
+---
+
+## Community / engagement
+
+21. **If you're thinking about building in the next two years, comment START.** We'll send you our "First 90 Days" guide — what to decide before you hire anyone.
+    `#bayareahomes #customhomebuilder #buildguide`
+
+22. **Where would you build your legacy home?** Los Altos hills, Palo Alto flats, Saratoga vineyards, Los Gatos creekside, or Campbell downtown? Drop your pick.
+    `#bayareahomes #luxurylifestyle #dreamhome`
+
+23. **One question we get constantly: "When should I start?"** Short answer: the day you know it's a question.
+    `#customhomebuilder #buildtimeline #bayareahomes`
+
+24. **Architects we love working with in the Bay Area — drop yours in the comments.** We'll keep the list. Good partners matter.
+    `#bayareaarchitects #customhomes #designcommunity`
+
+25. **Share this with the person you'd build with.** Spouse, partner, sibling — the person sitting next to you on the couch scrolling right now.
+    `#customhomes #bayareahomes #legacybuild`
+
+---
+
+## Short-form / stories-ready
+
+26. Measured twice. Modeled five times. Built once.
+
+27. Your home is not a product. It is a sequence of thousands of decisions.
+
+28. The budget lives or dies at design phase. Not on the jobsite.
+
+29. Permits are a skill, not a cost line.
+
+30. Confidence. Disciplined execution.
+
+---
+
+## Hashtag sets (rotate 8–12 per post, don't repeat)
+
+**Brand + core:**
+`#barcbuildergroup #bayareacustomhomes #customhomebuilder #luxuryhomes #customhome`
+
+**Cities (always include your project city):**
+`#losaltos #losaltoshomes #paloalto #paloaltohomes #losgatos #losgatoshomes #saratoga #saratogahomes #campbellca`
+
+**Design / architecture:**
+`#bayareaarchitect #modernhomes #transitionalhomes #architecturaldetails #craftsmanship`
+
+**Lifestyle:**
+`#bayarealiving #siliconvalleyhomes #luxurylifestyle #estatehomes`
+
+**Keep total hashtags 8–12.** More looks spammy and underperforms. Always include at least one city tag for geo-reach.
