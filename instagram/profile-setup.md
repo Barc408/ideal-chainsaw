@@ -6,38 +6,49 @@ The profile is a landing page. Every element should answer "who is this for and 
 
 ## Handle & name field
 
-- **Handle:** `@barcbuilders` (or closest available — keep it short, readable, no underscores if possible).
-- **Name field (searchable keywords, NOT your handle again):** `BARC Builders | [City] Custom Homes`
-  - The name field is indexed by IG search. Put your craft + city here, not your brand name twice.
+- **Handle:** `@barcbuildergroup` ✅ (already set)
+- **Name field — current:** `BARC Builder Group`
+- **Name field — recommended:** `BARC Builder Group | Bay Area Luxury Custom Homes`
+  - The name field is indexed by IG search. "BARC Builder Group" alone doesn't pull in organic search traffic. Add "Bay Area Luxury Custom Homes" and you become discoverable to homeowners Googling "Palo Alto custom home builder," "Los Altos luxury remodel," etc.
+  - Alt: `BARC Builder Group | Palo Alto Custom Homes` if you want one hero city instead of "Bay Area."
 
 ---
 
 ## Bio (150 chars — use every one)
 
-Pick one. A/B test after 30 days.
+**Current bio:**
+> Luxury Residential & Commercial Construction
+> Custom Homes • Renovations • Development
+> Los Altos • Palo Alto • Los Gatos • Saratoga • Campbell
 
-**Option A — authority + locale:**
-> Custom homes & remodels in [City] 🔨
-> 20+ yrs turning blueprints into keys
-> 📍 Licensed & insured • [License #]
-> 👇 Get a free build checklist
+**What's working:** clear service lines + 5-city keyword stack (great for IG search).
+**What's missing:** no proof line, no CTA with arrow to the link-in-bio, no personality. Luxury homeowners in this zip range spend $3M–$15M on a build — they need to feel craftsmanship and discipline, not just see a list.
 
-**Option B — community-first (recommended for group growth):**
-> The builders' group for [City] & beyond.
-> Jobsite tips • plan-reading • business of building
-> 5 posts/week, zero fluff
-> 👇 Join the crew
+### Recommended bio (homeowner-facing — aligned with your feed)
 
-**Option C — outcome-first (if you want homeowner leads):**
-> From dirt to keys in 90 days.
-> Custom homes + full remodels in [City].
-> ⭐ 4.9 from 80+ families
+> Luxury custom homes & remodels
+> Los Altos • Palo Alto • Los Gatos • Saratoga • Campbell
+> "Confidence. Disciplined Execution."
 > 👇 Start your build
+
+### Alt — more proof-driven (if you have numbers to cite)
+
+> Bay Area luxury custom homes & remodels
+> [X] homes delivered • [Y] years • on time, on spec
+> Los Altos → Campbell
+> 👇 Book a consult
+
+### Alt — vision-driven (matches your carousel tagline)
+
+> You have the vision. We build the legacy.
+> Luxury custom homes in the Bay Area.
+> Los Altos • Palo Alto • Los Gatos • Saratoga • Campbell
+> 👇 Start your project
 
 **Bio writing rules:**
 - Line 1: who it's for / what you do (searchable keywords).
-- Line 2: proof (years, awards, projects, license).
-- Line 3: what they get on this profile.
+- Line 2: proof (years, awards, projects, license) or geographic reach.
+- Line 3: brand promise or tagline.
 - Line 4: CTA with arrow pointing at the link.
 - Use line breaks via IG's bio editor (paste from Notes if IG strips them).
 
@@ -45,15 +56,15 @@ Pick one. A/B test after 30 days.
 
 ## Link in bio
 
-One link tool (Linktree, Beacons, or a simple landing page on your own domain — preferred for SEO). Links in this order:
+One link tool (Linktree, Beacons, or a simple landing page on your own domain — preferred for SEO on a luxury brand). Links in this order for a homeowner-facing profile:
 
-1. **Join the BARC builder group** (main CTA — form or Skool/Circle/FB link).
-2. **Request a build consult** (lead form for homeowner inquiries).
-3. **Free framing checklist PDF** (email capture — grows your list).
-4. **Latest project gallery** (portfolio page).
-5. **Book a site walk-through** (Calendly or similar).
+1. **Start your build — request a consult** (main CTA: Calendly or lead form → 15-min discovery call).
+2. **The BARC Legacy Guide** (email capture — "You Have the Vision. We Build the Legacy." PDF you already have).
+3. **Featured projects** (portfolio page, grouped by city: Los Altos, Palo Alto, etc.).
+4. **The process — dirt to ribbon-cutting** (page explaining your build stages).
+5. **Press & recognition** (any magazine features, awards, or press hits).
 
-Rotate the top item with whatever your current IG campaign is pushing.
+Rotate the top item seasonally — e.g. swap in "Land acquisition consult" during spring / early summer when lot season peaks.
 
 ---
 
@@ -66,51 +77,54 @@ Rotate the top item with whatever your current IG campaign is pushing.
 
 ## Story highlights (9 covers, ordered left-to-right by priority)
 
-Design covers in the same palette as your carousels. Short labels (max 10 chars).
+Design covers in black + BARC gold (match your logo) — no stock icons. Short labels (max 10 chars).
 
 | Order | Label | What goes inside |
 |---|---|---|
-| 1 | Join | How to join the BARC builder group + link sticker. |
-| 2 | Wins | Completed builds, before/afters, client testimonials. |
-| 3 | Tour | Walk-throughs of current jobsites. |
-| 4 | Process | Your build stages explained — dirt to keys. |
-| 5 | Tools | Favorites, reviews, shop tours. |
-| 6 | Crew | Meet the team, foreman spotlights. |
-| 7 | Press | Magazine features, podcast appearances, awards. |
-| 8 | Reviews | Screenshots of Google / Houzz / Yelp reviews. |
-| 9 | FAQ | Pricing basics, timeline, permits, warranty. |
+| 1 | Start | How to start a project: consult link, timeline expectations, price ranges. |
+| 2 | Legacy | "You Have the Vision. We Build the Legacy." guide + download sticker. |
+| 3 | Homes | Completed builds, before/afters, client reactions. |
+| 4 | Process | Your build stages — land → design → permits → build → ribbon-cutting. |
+| 5 | In Build | Current jobsite walk-throughs (luxury viewers love exclusive access). |
+| 6 | Cities | Tap-through by area: Los Altos, Palo Alto, Los Gatos, Saratoga, Campbell. |
+| 7 | Team | Founder + key leads. Homeowners hire humans, not logos. |
+| 8 | Press | Magazine features, awards, podcast appearances. |
+| 9 | Reviews | Screenshots of Google / Houzz / Yelp reviews + video testimonials. |
 
 ---
 
 ## Pinned posts (3 slots — these are your storefront)
 
-Instagram lets you pin 3 posts at the top of your grid. These should do the work of your old homepage.
+Instagram lets you pin 3 posts at the top of your grid. These should do the work of your old homepage. For a luxury homeowner audience the job is: establish trust, show the outcome, explain the process.
 
-### Pin 1 — "What is the BARC builder group?"
+### Pin 1 — "You Have the Vision. We Build the Legacy." (your existing guide carousel)
 
-- **Format:** 8-slide carousel.
-- **Goal:** explain the group in 20 seconds.
+- **Format:** the carousel already in your feed (top right in the screenshot).
+- **Goal:** frame the BARC promise before anything else loads.
+- **Only add:** a final CTA slide — "Start your build → link in bio."
+
+### Pin 2 — "From raw parcel to ribbon-cutting" (the process, explained)
+
+- **Format:** 9-slide carousel.
+- **Goal:** answer the #1 luxury-homeowner question: "what will this actually be like?"
 - **Slides:**
-  1. Cover: "You're a builder. We're your group."
-  2. Who it's for: GCs, framers, trim carpenters, PMs.
-  3. What you get: weekly jobsite breakdowns, tool reviews, business plays.
-  4. Who runs it: [Founder name] + team, [X] years, [Y] builds.
-  5. What members say: one-line testimonial.
-  6. What it costs: free / $X/mo / application-only (pick one).
-  7. How to join: comment JOIN or tap the link in bio.
-  8. CTA: "Tap the link. See you inside."
-- **Caption:** Use caption pack #25 ("Share this with one person who should be in BARC") adapted.
+  1. Cover: "From raw parcel to ribbon-cutting. Here's how we build."
+  2. Stage 1 — Land & feasibility (site walk, zoning, soils).
+  3. Stage 2 — Design partnership (architect, interiors, engineer under one schedule).
+  4. Stage 3 — Permits & pre-construction (we navigate the Bay Area AHJ maze).
+  5. Stage 4 — Build (weekly owner walks, transparent budget, no surprises).
+  6. Stage 5 — Finishes & punch (every detail, every time).
+  7. Stage 6 — Handoff (warranty walk, care book, year-one check-ins).
+  8. Signature line: "Confidence. Disciplined Execution."
+  9. CTA: "Start the conversation → link in bio."
+- **Caption:** A short story about how one recent client went from first call to handoff, with the total timeline.
 
-### Pin 2 — "Our best build story"
+### Pin 3 — Signature build reveal (your best recent home)
 
 - **Format:** Reel, 45–60s.
-- **Goal:** emotional proof. Shows your craft and your follow-through.
-- **Content:** pick your most visually striking recent project. Open with hook #42 ("They said it couldn't be done in 90 days."). Before photos → time-lapse build → handoff day reaction → logo + CTA.
-- **Caption:** caption pack #4, expanded with a short origin story of the project.
-
-### Pin 3 — "7 framing mistakes that fail inspection" (carousel #1)
-
-- Your highest-save piece of content. Keeps non-followers scrolling into follows because they want the rest of your library.
+- **Goal:** emotional + aspirational proof. This is the post people send to their spouse.
+- **Content:** your most visually striking recent Los Altos / Palo Alto home. Open on the finished exterior at golden hour. Cut through kitchen → primary suite → backyard. End on owner walk-in reaction. No voice-over — let the cinematography and a mellow score carry it.
+- **Caption:** "A legacy home in [city]. [Total sqft] sqft. [N] months. Every detail the client envisioned — delivered. Start your build → link in bio."
 
 Review pins every 60 days. Replace whatever pin has the lowest save rate.
 
@@ -126,12 +140,27 @@ Review pins every 60 days. Replace whatever pin has the lowest save rate.
 
 ## First-week setup checklist
 
-- [ ] Update handle + name field with city keyword.
-- [ ] Rewrite bio (pick option B to start).
-- [ ] Set up Linktree (or replace with own domain landing page).
-- [ ] Design 9 highlight covers.
-- [ ] Create + pin the 3 pinned posts.
-- [ ] Enable professional account + connect FB page (required for insights + ads later).
+- [ ] Update name field to `BARC Builder Group | Bay Area Luxury Custom Homes`.
+- [ ] Rewrite bio (start with the recommended option — tagline + CTA).
+- [ ] Link-in-bio: make "Start your build — request a consult" the top link.
+- [ ] Design 9 highlight covers in black + BARC gold (match the logo).
+- [ ] Create + pin the 3 pinned posts (Legacy guide → Process carousel → Signature build reel).
+- [ ] Professional account is already on — confirm Meta Business Suite is connected for ad eligibility later.
 - [ ] Turn on message buttons: email, call, directions.
-- [ ] Add contact + address in profile settings (shows up in search + Maps).
-- [ ] Set auto-DM welcome ("Thanks for following — tap here to join the builder group").
+- [ ] Add contact + office address in profile settings (shows up in IG search + Apple/Google Maps).
+- [ ] Set auto-DM welcome ("Thanks for following — tap here to start a conversation about your build.").
+
+---
+
+## ⚠️ Audience alignment note
+
+The rest of the content kit (`reels-scripts.md`, `caption-pack.md`, `hook-bank.md`, `30-day-calendar.md`, `carousel-outlines.md`, `dm-welcome-flow.md`, `lead-magnet-framing-checklist.md`, `ad-creative.md`) was written assuming BARC = a peer group for working builders (framers, GCs, PMs).
+
+Your actual audience based on the feed is **luxury Bay Area homeowners** — the people who will hire you to build a $5M+ custom home in Palo Alto. That's a completely different content strategy:
+
+- **Ditch:** "Spot the mistake," "Rookie vs Veteran," "subs-vs-in-house math," "framing checklist lead magnet."
+- **Keep & retune:** Before/After, Day-in-the-life (from the client's perspective), process walkthroughs, finished-home reveals.
+- **Add:** Land-buying tips, architect partnerships, design-decision moments, case studies with real numbers, warranty & after-care stories.
+- **Retune the lead magnet:** replace the framing checklist with a **"Bay Area Luxury Build Guide"** — the same guide your pinned carousel is already teasing.
+
+I can repoint the whole kit to the homeowner audience — just say the word.
