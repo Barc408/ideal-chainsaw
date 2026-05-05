@@ -7,13 +7,13 @@
   <meta name="description" content="BARC Builders specializes in luxury custom homes, high-end renovations, and additions across the Bay Area — Los Gatos, Atherton, Palo Alto, Campbell & beyond. CSLB #1002227." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
   <!-- ============ HEADER ============ -->
-  <header class="site-header">
+  <header class="site-header" id="site-header">
     <div class="container nav">
       <a href="index.html" class="brand" aria-label="BARC Builder Group home">
         <span class="brand-mark" aria-hidden="true">B</span>
@@ -25,7 +25,6 @@
 
       <nav aria-label="Primary">
         <ul class="nav-links">
-          <li><a href="index.html">Home</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="process.html">Process</a></li>
           <li class="has-dropdown">
@@ -38,8 +37,8 @@
             </ul>
           </li>
           <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="testimonials.html">Testimonials</a></li>
           <li><a href="contact.html">Contact</a></li>
-          <li class="nav-cta"><a class="btn btn-primary" href="contact.html">Begin Your Project</a></li>
         </ul>
       </nav>
 
@@ -49,44 +48,32 @@
 
   <!-- ============ HERO ============ -->
   <section class="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
     <div class="container hero-inner">
-      <span class="eyebrow">Bay Area's Premier Luxury Builder</span>
-      <h1>Where Exceptional Design Meets Unrivaled Craftsmanship</h1>
-      <p class="subhead">For over 13 years, BARC Builders has created homes of extraordinary quality for the Bay Area's most discerning families — each one a reflection of their vision, refined through our obsessive attention to detail and commitment to the highest standards of construction.</p>
-
-      <div class="hero-ctas">
+      <span class="eyebrow reveal">Bay Area's Premier Luxury Builder · Est. 2013</span>
+      <h1 class="reveal delay-1">Homes built with the kind of care<br>you'd expect of <em>fine furniture</em>.</h1>
+      <p class="subhead reveal delay-2">For over 13 years, BARC Builders has created residences of extraordinary quality for the Bay Area's most discerning families — each one a reflection of their vision, refined through our obsessive attention to detail and commitment to the highest standards of construction.</p>
+      <div class="hero-ctas reveal delay-3">
         <a class="btn btn-primary" href="contact.html">Begin Your Project <span class="arrow">→</span></a>
-        <a class="btn btn-ghost" href="portfolio.html">View Our Work</a>
+        <a class="text-link" href="portfolio.html">View Our Work <span class="arrow">→</span></a>
       </div>
-
-      <div class="trust-line">
+      <div class="trust-line reveal delay-4">
         <span><span class="dot"></span>CSLB #1002227</span>
         <span><span class="dot"></span>5.0★ Google Rating</span>
         <span><span class="dot"></span>75+ Completed Residences</span>
       </div>
     </div>
+    <div class="scroll-cue" aria-hidden="true">Scroll</div>
   </section>
 
   <!-- ============ STATS BAR ============ -->
   <section class="stats" aria-label="By the numbers">
     <div class="container">
       <div class="stats-grid">
-        <div class="stat">
-          <div class="stat-num">13+</div>
-          <div class="stat-label">Years of Bay Area Excellence</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num">75+</div>
-          <div class="stat-label">Luxury Residences Built</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num">5.0★</div>
-          <div class="stat-label">Perfect Google Rating</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num">100%</div>
-          <div class="stat-label">Licensed, Bonded &amp; Insured</div>
-        </div>
+        <div class="stat reveal"><div class="stat-num">13+</div><div class="stat-label">Years of Bay Area Excellence</div></div>
+        <div class="stat reveal delay-1"><div class="stat-num">75+</div><div class="stat-label">Luxury Residences Built</div></div>
+        <div class="stat reveal delay-2"><div class="stat-num">5.0★</div><div class="stat-label">Perfect Google Rating</div></div>
+        <div class="stat reveal delay-3"><div class="stat-num">100%</div><div class="stat-label">Licensed, Bonded &amp; Insured</div></div>
       </div>
     </div>
   </section>
@@ -94,177 +81,141 @@
   <!-- ============ SERVICES ============ -->
   <section class="section section-light" id="services">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head reveal">
         <span class="eyebrow">Our Expertise</span>
-        <h2>Crafted for the Way You Live</h2>
+        <h2>Crafted for the way you live.</h2>
         <p class="lede">Every home we build begins with a single question: how do you want to live? From there, our team works in concert to bring that vision to life — with no detail too small, no standard too high.</p>
       </div>
 
       <div class="services-grid">
-        <article class="service-card">
-          <div class="num">No. 01</div>
-          <h3>Custom Homes</h3>
-          <p>A truly custom home is one of life's great privileges. We build ground-up residences of extraordinary quality — where every material, finish, and proportion has been considered with care.</p>
-          <a class="more" href="custom-homes.html">Explore Custom Homes <span class="arrow">→</span></a>
+        <article class="service-card reveal">
+          <div class="num">No. 01 — Custom Homes</div>
+          <h3>A truly custom home is one of life's great privileges.</h3>
+          <p>We build ground-up residences of extraordinary quality — where every material, finish, and proportion has been considered with care.</p>
+          <a class="more" href="custom-homes.html">Explore <span class="arrow">→</span></a>
         </article>
-
-        <article class="service-card">
-          <div class="num">No. 02</div>
-          <h3>Renovations</h3>
-          <p>Your home has good bones — we make it extraordinary. Our renovation process transforms existing spaces into something worthy of the life you're living now, with craftsmanship that lasts.</p>
-          <a class="more" href="renovations.html">Explore Renovations <span class="arrow">→</span></a>
+        <article class="service-card reveal delay-1">
+          <div class="num">No. 02 — Renovations</div>
+          <h3>Your home has good bones. We make it extraordinary.</h3>
+          <p>Our renovation process transforms existing spaces into something worthy of the life you're living now, with craftsmanship that lasts.</p>
+          <a class="more" href="renovations.html">Explore <span class="arrow">→</span></a>
         </article>
-
-        <article class="service-card">
-          <div class="num">No. 03</div>
-          <h3>Additions &amp; ADUs</h3>
-          <p>More space, flawlessly integrated. Whether it's a primary suite, a guest house, or a fully permitted ADU, we expand your home in a way that feels original — never added on.</p>
-          <a class="more" href="additions.html">Explore Additions <span class="arrow">→</span></a>
+        <article class="service-card reveal">
+          <div class="num">No. 03 — Additions &amp; ADUs</div>
+          <h3>More space, flawlessly integrated.</h3>
+          <p>Whether it's a primary suite, a guest house, or a fully permitted ADU, we expand your home in a way that feels original — never added on.</p>
+          <a class="more" href="additions.html">Explore <span class="arrow">→</span></a>
         </article>
-
-        <article class="service-card">
-          <div class="num">No. 04</div>
-          <h3>Developments</h3>
-          <p>For developers who refuse to compromise on quality, we bring the same design rigor and construction discipline that defines our custom homes to every residential development project.</p>
-          <a class="more" href="developments.html">Explore Developments <span class="arrow">→</span></a>
+        <article class="service-card reveal delay-1">
+          <div class="num">No. 04 — Developments</div>
+          <h3>For developers who refuse to compromise on quality.</h3>
+          <p>We bring the same design rigor and construction discipline that defines our custom homes to every residential development project.</p>
+          <a class="more" href="developments.html">Explore <span class="arrow">→</span></a>
         </article>
       </div>
+    </div>
+  </section>
+
+  <!-- ============ FEATURED PROJECT ============ -->
+  <section class="featured" aria-label="Featured project">
+    <div class="featured-bg" aria-hidden="true"></div>
+    <div class="container featured-inner">
+      <span class="eyebrow reveal">Featured Project</span>
+      <h2 class="reveal delay-1">A modern California residence,<br>seated <em>quietly</em> into the hillside.</h2>
+      <p class="reveal delay-2">A 6,200-square-foot ground-up custom home in Los Gatos. Hand-troweled plaster walls, single-piece white oak floors, and steel window walls calibrated to balance light, view, and the home's quiet integration with its setting.</p>
+      <div class="featured-meta reveal delay-3">
+        <div><span class="label">Type</span><span class="value">Custom Home</span></div>
+        <div><span class="label">Location</span><span class="value">Los Gatos, CA</span></div>
+        <div><span class="label">Year</span><span class="value">2025</span></div>
+      </div>
+      <a class="text-link reveal delay-4" href="project-custom-home-01.html" style="color: var(--gold-highlight); border-color: var(--gold-highlight);">Explore the Project <span class="arrow">→</span></a>
     </div>
   </section>
 
   <!-- ============ WHY US ============ -->
   <section class="section section-dark">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head reveal">
         <span class="eyebrow">The BARC Standard</span>
-        <h2>Built Differently. By Design.</h2>
+        <h2>Built differently. By design.</h2>
         <p class="lede">Our clients have options. They choose BARC because they've learned that the quality of a home is inseparable from the integrity of the team that builds it.</p>
       </div>
-
       <div class="why-grid">
-        <div class="why-item">
-          <div class="marker">01</div>
-          <div>
-            <h3>An Obsession With Detail</h3>
-            <p>We scrutinize every joint, finish, and transition — not because we have to, but because a home built to this standard simply performs better and ages more beautifully.</p>
-          </div>
+        <div class="why-item reveal">
+          <span class="num">No. 01</span>
+          <h3>An obsession with detail</h3>
+          <p>We scrutinize every joint, finish, and transition — not because we have to, but because a home built to this standard simply performs better and ages more beautifully.</p>
         </div>
-        <div class="why-item">
-          <div class="marker">02</div>
-          <div>
-            <h3>Complete Transparency</h3>
-            <p>Detailed estimates before we break ground. Proactive communication throughout. No surprises at the invoice — ever.</p>
-          </div>
+        <div class="why-item reveal delay-1">
+          <span class="num">No. 02</span>
+          <h3>Complete transparency</h3>
+          <p>Detailed estimates before we break ground. Proactive communication throughout. No surprises at the invoice — ever.</p>
         </div>
-        <div class="why-item">
-          <div class="marker">03</div>
-          <div>
-            <h3>Fully Permitted, Always</h3>
-            <p>Every project is properly permitted and inspected — protecting your investment now and ensuring a clean record at resale or refinancing.</p>
-          </div>
+        <div class="why-item reveal">
+          <span class="num">No. 03</span>
+          <h3>Fully permitted, always</h3>
+          <p>Every project is properly permitted and inspected — protecting your investment now and ensuring a clean record at resale or refinancing.</p>
         </div>
-        <div class="why-item">
-          <div class="marker">04</div>
-          <div>
-            <h3>13 Years of Local Mastery</h3>
-            <p>We know every permit office, trusted subcontractor, and neighborhood nuance across the markets we serve — from Campbell and Los Gatos to Atherton and Belmont.</p>
-          </div>
+        <div class="why-item reveal delay-1">
+          <span class="num">No. 04</span>
+          <h3>13 years of local mastery</h3>
+          <p>We know every permit office, trusted subcontractor, and neighborhood nuance across the markets we serve — from Campbell and Los Gatos to Atherton and Belmont.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ============ SERVICE AREA ============ -->
-  <section class="section section-light">
+  <section class="section section-cream">
     <div class="container">
-      <div class="area-wrap">
+      <div class="area-wrap reveal">
         <span class="eyebrow">Where We Build</span>
-        <h2>The Bay Area's Most Coveted Communities</h2>
-        <p>We build and transform homes across the Bay Area's most prestigious addresses — from the estate properties of Saratoga and Los Gatos to the storied neighborhoods of Atherton and Menlo Park, and up through the Peninsula to Belmont. Each community has its own character, its own architectural language, and its own permitting landscape. We know them all intimately.</p>
-
+        <h2>The Bay Area's most coveted communities.</h2>
+        <p>From the estate properties of Saratoga and Los Gatos to the storied neighborhoods of Atherton and Menlo Park, and up through the Peninsula to Belmont. Each community has its own character, its own architectural language, and its own permitting landscape. We know them all intimately.</p>
         <div class="pills">
-          <span class="pill">Campbell</span>
-          <span class="pill">Los Gatos</span>
-          <span class="pill">Saratoga</span>
-          <span class="pill">Monte Sereno</span>
-          <span class="pill">Los Altos</span>
-          <span class="pill">Los Altos Hills</span>
-          <span class="pill">Cupertino</span>
-          <span class="pill">Sunnyvale</span>
-          <span class="pill">San Jose</span>
-          <span class="pill">Palo Alto</span>
-          <span class="pill">Atherton</span>
-          <span class="pill">Menlo Park</span>
-          <span class="pill">Redwood City</span>
-          <span class="pill">Belmont</span>
+          <span class="pill">Campbell</span><span class="pill">Los Gatos</span><span class="pill">Saratoga</span><span class="pill">Monte Sereno</span><span class="pill">Los Altos</span><span class="pill">Los Altos Hills</span><span class="pill">Cupertino</span><span class="pill">Sunnyvale</span><span class="pill">San Jose</span><span class="pill">Palo Alto</span><span class="pill">Atherton</span><span class="pill">Menlo Park</span><span class="pill">Redwood City</span><span class="pill">Belmont</span>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ============ PORTFOLIO TEASER ============ -->
-  <section class="section section-dark">
+  <section class="section section-light">
     <div class="container">
-      <div class="section-head">
-        <span class="eyebrow">Our Portfolio</span>
-        <h2>Homes That Speak for Themselves</h2>
-        <p class="lede">Seventy-five completed residences. Each one unique. Each one a testament to what happens when great design meets meticulous execution.</p>
+      <div class="section-head-left reveal">
+        <div class="left">
+          <span class="eyebrow">Selected Work</span>
+          <h2>Homes that speak<br>for themselves.</h2>
+        </div>
+        <div class="right">
+          <p class="lede">Seventy-five completed residences. Each one unique. Each one a testament to what happens when great design meets meticulous execution.</p>
+        </div>
       </div>
 
       <div class="portfolio-grid">
-        <a class="project" href="project-custom-home-01.html">
-          <div class="thumb thumb-1" role="img" aria-label="Luxury custom home interior — BARC Builders Bay Area"></div>
-          <div class="overlay"></div>
-          <div class="meta">
-            <div class="label">Custom Home · 2025</div>
-            <div class="title">Custom Home No. 01</div>
-            <div class="city">Los Gatos</div>
-          </div>
+        <a class="project reveal" href="project-custom-home-01.html">
+          <div class="thumb-wrap"><div class="thumb thumb-1" role="img" aria-label="Luxury custom home interior — BARC Builders Bay Area"></div></div>
+          <div class="meta"><div class="label">Custom Home · 2025</div><div class="title">Custom Home No. 01</div><div class="city">Los Gatos</div></div>
         </a>
-        <a class="project" href="portfolio.html">
-          <div class="thumb thumb-2" role="img" aria-label="Modern custom home exterior — BARC Builders Bay Area"></div>
-          <div class="overlay"></div>
-          <div class="meta">
-            <div class="label">Custom Home · 2024</div>
-            <div class="title">Custom Home No. 02</div>
-            <div class="city">Saratoga</div>
-          </div>
+        <a class="project reveal delay-1" href="portfolio.html">
+          <div class="thumb-wrap"><div class="thumb thumb-2" role="img" aria-label="Modern custom home exterior — BARC Builders Bay Area"></div></div>
+          <div class="meta"><div class="label">Custom Home · 2024</div><div class="title">Custom Home No. 02</div><div class="city">Saratoga</div></div>
         </a>
-        <a class="project" href="portfolio.html">
-          <div class="thumb thumb-3" role="img" aria-label="Whole-home renovation — BARC Builders Bay Area"></div>
-          <div class="overlay"></div>
-          <div class="meta">
-            <div class="label">Renovation · 2024</div>
-            <div class="title">Renovation No. 01</div>
-            <div class="city">Palo Alto</div>
-          </div>
+        <a class="project reveal delay-2" href="portfolio.html">
+          <div class="thumb-wrap"><div class="thumb thumb-3" role="img" aria-label="Whole-home renovation — BARC Builders Bay Area"></div></div>
+          <div class="meta"><div class="label">Renovation · 2024</div><div class="title">Renovation No. 01</div><div class="city">Palo Alto</div></div>
         </a>
-        <a class="project" href="portfolio.html">
-          <div class="thumb thumb-4" role="img" aria-label="Detached ADU — BARC Builders Bay Area"></div>
-          <div class="overlay"></div>
-          <div class="meta">
-            <div class="label">Addition · 2023</div>
-            <div class="title">Addition No. 01</div>
-            <div class="city">Campbell</div>
-          </div>
+        <a class="project reveal" href="portfolio.html">
+          <div class="thumb-wrap"><div class="thumb thumb-4" role="img" aria-label="Detached ADU — BARC Builders Bay Area"></div></div>
+          <div class="meta"><div class="label">Addition · 2023</div><div class="title">Addition No. 01</div><div class="city">Campbell</div></div>
         </a>
-        <a class="project" href="portfolio.html">
-          <div class="thumb thumb-5" role="img" aria-label="Estate custom home — BARC Builders Bay Area"></div>
-          <div class="overlay"></div>
-          <div class="meta">
-            <div class="label">Custom Home · 2023</div>
-            <div class="title">Custom Home No. 03</div>
-            <div class="city">Atherton</div>
-          </div>
+        <a class="project reveal delay-1" href="portfolio.html">
+          <div class="thumb-wrap"><div class="thumb thumb-5" role="img" aria-label="Estate custom home — BARC Builders Bay Area"></div></div>
+          <div class="meta"><div class="label">Custom Home · 2023</div><div class="title">Custom Home No. 03</div><div class="city">Atherton</div></div>
         </a>
-        <a class="project" href="portfolio.html">
-          <div class="thumb thumb-6" role="img" aria-label="Kitchen renovation — BARC Builders Bay Area"></div>
-          <div class="overlay"></div>
-          <div class="meta">
-            <div class="label">Renovation · 2023</div>
-            <div class="title">Renovation No. 02</div>
-            <div class="city">Menlo Park</div>
-          </div>
+        <a class="project reveal delay-2" href="portfolio.html">
+          <div class="thumb-wrap"><div class="thumb thumb-6" role="img" aria-label="Kitchen renovation — BARC Builders Bay Area"></div></div>
+          <div class="meta"><div class="label">Renovation · 2023</div><div class="title">Renovation No. 02</div><div class="city">Menlo Park</div></div>
         </a>
       </div>
 
@@ -277,12 +228,12 @@
   <!-- ============ BOTTOM CTA ============ -->
   <section class="cta-section">
     <div class="container">
-      <span class="eyebrow">Let's Create Something Extraordinary</span>
-      <h2>Your Vision. Our Craft.<br>A Home Unlike Any Other.</h2>
-      <p class="lede">The homes we're most proud of began with a conversation. We take on a carefully selected number of projects each year — not to be exclusive, but because every client deserves our full attention from the first meeting to the final walkthrough.</p>
-      <div class="ctas">
+      <span class="eyebrow reveal">Let's Create Something Extraordinary</span>
+      <h2 class="reveal delay-1">Your vision. Our craft.<br>A home <em>unlike any other</em>.</h2>
+      <p class="lede reveal delay-2">The homes we're most proud of began with a conversation. We take on a carefully selected number of projects each year — not to be exclusive, but because every client deserves our full attention from the first meeting to the final walkthrough.</p>
+      <div class="ctas reveal delay-3">
         <a class="btn btn-primary" href="contact.html">Begin Your Project <span class="arrow">→</span></a>
-        <a class="btn btn-ghost" href="tel:+14086284878">Call (408) 628-4878</a>
+        <a class="text-link" href="tel:+14086284878" style="color: var(--cream); border-color: var(--cream);">(408) 628-4878</a>
       </div>
     </div>
   </section>
@@ -294,14 +245,10 @@
         <div class="footer-brand">
           <a href="index.html" class="brand" aria-label="BARC Builder Group home">
             <span class="brand-mark" aria-hidden="true">B</span>
-            <span class="brand-name">
-              <span class="word">BARC</span>
-              <span class="sub">Builder Group</span>
-            </span>
+            <span class="brand-name"><span class="word">BARC</span><span class="sub">Builder Group</span></span>
           </a>
-          <p style="margin-top:1.25rem;">The Bay Area's premier luxury home builder. 13+ years of design-forward custom homes, renovations, and additions — built by craftspeople who care.</p>
+          <p style="margin-top:1.5rem;">The Bay Area's premier luxury home builder. 13+ years of design-forward custom homes, renovations, and additions — built by craftspeople who care.</p>
         </div>
-
         <div>
           <h4>Explore</h4>
           <ul>
@@ -312,7 +259,6 @@
             <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
-
         <div>
           <h4>Services</h4>
           <ul>
@@ -322,30 +268,53 @@
             <li><a href="developments.html">Developments</a></li>
           </ul>
         </div>
-
         <div class="footer-contact">
           <h4>Contact</h4>
-          <div class="row">
-            <div class="label">Phone</div>
-            <a href="tel:+14086284878">(408) 628-4878</a>
-          </div>
-          <div class="row">
-            <div class="label">Email</div>
-            <a href="mailto:info@barcbuildergroup.com">info@barcbuildergroup.com</a>
-          </div>
-          <div class="row">
-            <div class="label">Office (by appointment)</div>
-            90 Gilman Ave<br>Campbell, CA 95008
-          </div>
+          <div class="row"><div class="label">Phone</div><a href="tel:+14086284878">(408) 628-4878</a></div>
+          <div class="row"><div class="label">Email</div><a href="mailto:info@barcbuildergroup.com">info@barcbuildergroup.com</a></div>
+          <div class="row"><div class="label">Office (by appointment)</div>90 Gilman Ave<br>Campbell, CA 95008</div>
         </div>
       </div>
-
       <div class="footer-bottom">
         <span>© 2026 BARC Builder Group. All rights reserved.</span>
         <span class="license">CSLB #1002227 · Licensed, Bonded &amp; Insured</span>
       </div>
     </div>
   </footer>
+
+  <script>
+    // Header solid-on-scroll
+    (function () {
+      var header = document.getElementById('site-header');
+      if (!header) return;
+      var hasHero = !!document.querySelector('.hero');
+      if (!hasHero) header.classList.add('solid');
+      var onScroll = function () {
+        if (window.scrollY > 80) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    })();
+
+    // Reveal-on-scroll
+    (function () {
+      var els = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window) || !els.length) {
+        els.forEach(function (el) { el.classList.add('in'); });
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            e.target.classList.add('in');
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+      els.forEach(function (el) { io.observe(el); });
+    })();
+  </script>
 
 </body>
 </html>
