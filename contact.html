@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Begin Your Project | BARC Builders | Bay Area Luxury Builder</title>
+  <meta name="description" content="Ready to build something extraordinary? Contact BARC Builders — the Bay Area's premier luxury home builder. Serving Campbell, Los Gatos, Atherton, Palo Alto & Belmont. Call (408) 628-4878." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a href="index.html" class="brand" aria-label="BARC Builder Group home">
+        <span class="brand-mark" aria-hidden="true">B</span>
+        <span class="brand-name"><span class="word">BARC</span><span class="sub">Builder Group</span></span>
+      </a>
+      <nav aria-label="Primary">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="process.html">Process</a></li>
+          <li class="has-dropdown">
+            <a href="#" aria-haspopup="true">Services</a>
+            <ul class="dropdown" role="menu">
+              <li><a href="custom-homes.html">Custom Homes</a></li>
+              <li><a href="renovations.html">Renovations</a></li>
+              <li><a href="additions.html">Additions &amp; ADUs</a></li>
+              <li><a href="developments.html">Developments</a></li>
+            </ul>
+          </li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li class="nav-cta"><a class="btn btn-primary" href="contact.html">Begin Your Project</a></li>
+        </ul>
+      </nav>
+      <button class="menu-toggle" aria-label="Open menu">☰</button>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container page-hero-inner">
+      <span class="eyebrow">Contact</span>
+      <h1>Every Exceptional Home Begins With a Conversation.</h1>
+      <p class="subhead">Whether you're ready to break ground or still exploring what's possible, we'd love to hear about your project. Tell us what you have in mind — we'll give you an honest, informed perspective on what it takes to bring it to life.</p>
+    </div>
+  </section>
+
+  <section class="section section-light">
+    <div class="container">
+      <div class="contact-grid">
+        <div>
+          <span class="eyebrow">Tell Us About Your Project</span>
+          <h2>Begin Your Project</h2>
+          <p class="lede" style="margin-bottom: 2.5rem;">We take on a select number of projects each year — which means every inquiry gets a thoughtful response from our team, not a form letter. Fill out the form below or call us directly. We typically respond within one business day.</p>
+
+          <form class="contact-form" onsubmit="event.preventDefault(); alert('Form submission is wired up in Webflow — this is the design prototype.');">
+            <div class="row">
+              <div class="field">
+                <label for="name">Full Name</label>
+                <input id="name" name="name" type="text" required autocomplete="name" />
+              </div>
+              <div class="field">
+                <label for="phone">Phone Number</label>
+                <input id="phone" name="phone" type="tel" required autocomplete="tel" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="field">
+                <label for="email">Email Address</label>
+                <input id="email" name="email" type="email" required autocomplete="email" />
+              </div>
+              <div class="field">
+                <label for="city">Project City / Neighborhood</label>
+                <input id="city" name="city" type="text" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="field">
+                <label for="type">Project Type</label>
+                <select id="type" name="type">
+                  <option value="">Select one…</option>
+                  <option>Custom Home</option>
+                  <option>Renovation</option>
+                  <option>Addition / ADU</option>
+                  <option>Development</option>
+                  <option>Not Sure</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="contact-pref">Preferred Contact Method</label>
+                <select id="contact-pref" name="contact-pref">
+                  <option>Call</option>
+                  <option>Text</option>
+                  <option>Email</option>
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <label for="message">Tell Us About Your Project</label>
+              <textarea id="message" name="message" placeholder="A few sentences about what you're envisioning, your timeline, and anything else that helps us understand the project."></textarea>
+            </div>
+            <div class="submit-row">
+              <button type="submit" class="btn btn-primary">Begin Your Project <span class="arrow">→</span></button>
+            </div>
+          </form>
+        </div>
+
+        <aside class="contact-info">
+          <div class="block">
+            <div class="label">Phone</div>
+            <div class="value"><a href="tel:+14086284878">(408) 628-4878</a></div>
+          </div>
+          <div class="block">
+            <div class="label">Email</div>
+            <div class="value"><a href="mailto:info@barcbuildergroup.com">info@barcbuildergroup.com</a></div>
+          </div>
+          <div class="block">
+            <div class="label">Office (By Appointment)</div>
+            <div class="value">90 Gilman Ave<br>Campbell, CA 95008</div>
+          </div>
+          <div class="block">
+            <div class="label">License</div>
+            <div class="value">CSLB #1002227</div>
+          </div>
+          <div class="block">
+            <div class="label">Google Rating</div>
+            <div class="value">5.0 ★★★★★</div>
+          </div>
+          <a class="map-frame" href="https://www.google.com/maps/search/90+Gilman+Ave,+Campbell,+CA+95008" target="_blank" rel="noopener">View on Google Maps →</a>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand" aria-label="BARC Builder Group home">
+            <span class="brand-mark" aria-hidden="true">B</span>
+            <span class="brand-name"><span class="word">BARC</span><span class="sub">Builder Group</span></span>
+          </a>
+          <p style="margin-top:1.25rem;">The Bay Area's premier luxury home builder. 13+ years of design-forward custom homes, renovations, and additions — built by craftspeople who care.</p>
+        </div>
+        <div>
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="process.html">Our Process</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="testimonials.html">Testimonials</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Services</h4>
+          <ul>
+            <li><a href="custom-homes.html">Custom Homes</a></li>
+            <li><a href="renovations.html">Renovations</a></li>
+            <li><a href="additions.html">Additions &amp; ADUs</a></li>
+            <li><a href="developments.html">Developments</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h4>Contact</h4>
+          <div class="row"><div class="label">Phone</div><a href="tel:+14086284878">(408) 628-4878</a></div>
+          <div class="row"><div class="label">Email</div><a href="mailto:info@barcbuildergroup.com">info@barcbuildergroup.com</a></div>
+          <div class="row"><div class="label">Office (by appointment)</div>90 Gilman Ave<br>Campbell, CA 95008</div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 BARC Builder Group. All rights reserved.</span>
+        <span class="license">CSLB #1002227 · Licensed, Bonded &amp; Insured</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
