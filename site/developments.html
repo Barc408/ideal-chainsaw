@@ -7,37 +7,31 @@
   <meta name="description" content="BARC Builders partners with Bay Area developers who refuse to compromise on quality — bringing bespoke craftsmanship and disciplined project management to every development." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
   <header class="site-header solid" id="site-header">
-    <div class="container nav">
+    <div class="nav">
       <a href="index.html" class="brand" aria-label="BARC Builder Group home">
-        <span class="brand-mark" aria-hidden="true">B</span>
-        <span class="brand-name"><span class="word">BARC</span><span class="sub">Builder Group</span></span>
+        <span class="brand-name"><span class="word">BARC</span><span class="sub">BUILDERS</span></span>
       </a>
       <nav aria-label="Primary">
         <ul class="nav-links">
-          <li><a href="index.html">Home</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="process.html">Process</a></li>
-          <li class="has-dropdown">
-            <a href="#" aria-haspopup="true">Services</a>
-            <ul class="dropdown" role="menu">
-              <li><a href="custom-homes.html">Custom Homes</a></li>
-              <li><a href="renovations.html">Renovations</a></li>
-              <li><a href="additions.html">Additions &amp; ADUs</a></li>
-              <li><a href="developments.html">Developments</a></li>
-            </ul>
-          </li>
           <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="testimonials.html">Perspectives</a></li>
           <li><a href="contact.html">Contact</a></li>
-          <li class="nav-cta"><a class="btn btn-primary" href="contact.html">Begin Your Project</a></li>
         </ul>
       </nav>
-      <button class="menu-toggle" aria-label="Open menu">☰</button>
+      <div class="nav-status" aria-hidden="true">
+        <span class="pulse"></span>
+        <span>Campbell, CA</span>
+        <span class="sep">·</span>
+        <span class="clock" id="clock">--:--:--</span>
+      </div>
     </div>
   </header>
 
@@ -141,8 +135,7 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <a href="index.html" class="brand" aria-label="BARC Builder Group home">
-            <span class="brand-mark" aria-hidden="true">B</span>
-            <span class="brand-name"><span class="word">BARC</span><span class="sub">Builder Group</span></span>
+            <span class="brand-name"><span class="word">BARC</span><span class="sub">BUILDERS</span></span>
           </a>
           <p style="margin-top:1.25rem;">The Bay Area's premier luxury home builder. 13+ years of design-forward custom homes, renovations, and additions — built by craftspeople who care.</p>
         </div>
@@ -152,7 +145,7 @@
             <li><a href="about.html">About</a></li>
             <li><a href="process.html">Our Process</a></li>
             <li><a href="portfolio.html">Portfolio</a></li>
-            <li><a href="testimonials.html">Testimonials</a></li>
+            <li><a href="testimonials.html">Perspectives</a></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
@@ -180,6 +173,18 @@
   </footer>
 
   <script>
+    /* Live clock — Pacific time */
+    (function () {
+      var el = document.getElementById('clock');
+      if (!el) return;
+      var fmt = new Intl.DateTimeFormat('en-US', {
+        hour: '2-digit', minute: '2-digit', second: '2-digit',
+        hour12: false, timeZone: 'America/Los_Angeles'
+      });
+      var tick = function () { el.textContent = fmt.format(new Date()); };
+      tick();
+      setInterval(tick, 1000);
+    })();
     (function () {
       var header = document.getElementById('site-header');
       if (!header) return;
