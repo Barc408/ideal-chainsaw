@@ -7,12 +7,12 @@
   <meta name="description" content="A modern California custom home in Los Gatos by BARC Builders. Bespoke millwork, plaster walls, and a quiet integration with the surrounding landscape." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-  <header class="site-header">
+  <header class="site-header solid" id="site-header">
     <div class="container nav">
       <a href="index.html" class="brand" aria-label="BARC Builder Group home">
         <span class="brand-mark" aria-hidden="true">B</span>
@@ -168,5 +168,33 @@
     </div>
   </footer>
 
+  <script>
+    (function () {
+      var header = document.getElementById('site-header');
+      if (!header) return;
+      var onScroll = function () {
+        if (window.scrollY > 80) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+    })();
+    /* Reveal-on-scroll */
+    (function () {
+      var els = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window) || !els.length) {
+        els.forEach(function (el) { el.classList.add('in'); });
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            e.target.classList.add('in');
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+      els.forEach(function (el) { io.observe(el); });
+    })();
+  </script>
 </body>
 </html>
