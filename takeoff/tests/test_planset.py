@@ -11,7 +11,7 @@ from pathlib import Path
 
 import pytest
 
-from barc_takeoff import geometry, index, keynotes, pdfdoc, schedules
+from barc_takeoff import geometry, index, keynotes, members, pdfdoc, schedules
 
 FIXTURE = os.environ.get("BARC_TAKEOFF_FIXTURE")
 
@@ -138,3 +138,34 @@ class TestGeometry:
         req = geometry.required(plan)
         req.apply({m.key: 10 for m in req.measurements})
         assert req.complete
+
+
+@pytest.fixture(scope="module")
+def mem(plan):
+    return members.read(plan)
+
+
+class TestMemberCallouts:
+    def test_reads_tagged_beams(self, mem):
+        beams = {m.tag for m in mem.of_kind("beam")}
+        assert "PB2" in beams
+
+    def test_size_survives_case_folding(self, mem):
+        """Upper-casing the line first turns 5.5x7.5 into 5.5X7.5 and stops matching."""
+        pb2 = next(m for m in mem.of_kind("beam") if m.tag == "PB2")
+        assert pb2.size == "5.5x7.5"
+        assert pb2.material == "GLU-LAM"
+
+    def test_treatment_is_read_from_the_continuation_line(self, mem):
+        """'EXTERIOR TREATED' sits below the callout; treated glulam is a
+        different product at a different price."""
+        pb2 = next(m for m in mem.of_kind("beam") if m.tag == "PB2")
+        assert pb2.treated
+
+    def test_reads_columns(self, mem):
+        sizes = {m.size for m in mem.of_kind("column")}
+        assert {"4x6", "6x6"} <= sizes
+
+    def test_rotated_and_split_callouts_are_reported_not_guessed(self, mem):
+        assert "RB1" in mem.unresolved
+        assert not any(m.tag == "RB1" for m in mem.members)

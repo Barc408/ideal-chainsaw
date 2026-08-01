@@ -14,10 +14,20 @@ from pathlib import Path
 
 import yaml
 
-from . import geometry, index, keynotes, pdfdoc, report, schedules, standards
+from . import (
+    geometry,
+    index,
+    keynotes,
+    lumber,
+    members,
+    pdfdoc,
+    report,
+    schedules,
+    standards,
+)
 
 
-def _as_dict(plan, recon, scheds, notes, geom, std):
+def _as_dict(plan, recon, scheds, notes, geom, std, mem, lst):
     return {
         "plan_set": plan.path.name,
         "pages": len(plan.sheets),
@@ -63,7 +73,37 @@ def _as_dict(plan, recon, scheds, notes, geom, std):
             }
             for m in geom.measurements
         ],
-        "lumber_list": None,
+        "members": [
+            {
+                "tag": m.tag,
+                "kind": m.kind,
+                "size": m.size,
+                "material": m.material,
+                "existing": m.existing,
+                "treated": m.treated,
+                "sheet": m.sheet_id,
+            }
+            for m in mem.members
+        ],
+        "members_unresolved": mem.unresolved,
+        "lumber_list": None
+        if lst is None
+        else {
+            "items": [
+                {
+                    "description": i.description,
+                    "size": i.size,
+                    "length_ft": i.length_ft,
+                    "quantity": i.quantity,
+                    "unit": i.unit,
+                    "source": i.source,
+                    "note": i.note,
+                }
+                for i in lst.items
+            ],
+            "assumptions": lst.assumptions,
+            "warnings": lst.warnings,
+        },
         "blocked_on": [m.key for m in geom.outstanding],
         "standards_confirmed": std.confirmed,
     }
@@ -82,6 +122,9 @@ def main(argv: list[str] | None = None) -> int:
     )
     ap.add_argument("--standards", type=Path, help="override framing standards file")
     ap.add_argument("--schedule-sheet", default="S1.0", help="sheet to read schedules from")
+    ap.add_argument(
+        "--pitch", default="4:12", help="roof pitch for rafter length (default 4:12)"
+    )
     ap.add_argument("--json", action="store_true", help="emit JSON instead of text")
     args = ap.parse_args(argv)
 
@@ -98,16 +141,34 @@ def main(argv: list[str] | None = None) -> int:
     scheds = schedules.read(plan, args.schedule_sheet)
     notes = keynotes.read(plan)
     geom = geometry.required(plan)
+    mem = members.read(plan)
     std = standards.load(args.standards)
 
     if args.measurements:
         with open(args.measurements) as fh:
             geom.apply(yaml.safe_load(fh) or {})
 
+    lumber_list = None
+    if geom.complete:
+        try:
+            lumber_list = lumber.build(scheds, mem, geom, std, pitch=args.pitch)
+        except lumber.IncompleteInput as exc:
+            print(f"error: {exc}", file=sys.stderr)
+            return 2
+
     if args.json:
-        print(json.dumps(_as_dict(plan, recon, scheds, notes, geom, std), indent=2))
+        print(
+            json.dumps(
+                _as_dict(plan, recon, scheds, notes, geom, std, mem, lumber_list),
+                indent=2,
+            )
+        )
     else:
-        print(report.render(plan, recon, scheds, notes, geom, std))
+        print(
+            report.render(
+                plan, recon, scheds, notes, geom, std, mem, lumber_list
+            )
+        )
 
     # Non-zero when the set cannot support a complete takeoff, so this can gate
     # a workflow rather than just inform one.

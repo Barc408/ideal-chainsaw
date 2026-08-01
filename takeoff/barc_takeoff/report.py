@@ -11,6 +11,8 @@ from __future__ import annotations
 from .geometry import GeometryRequest
 from .index import Reconciliation
 from .keynotes import Keynote, Scope
+from .lumber import LumberList
+from .members import MemberTakeoff
 from .pdfdoc import PlanSet
 from .schedules import Schedules
 from .standards import Standards
@@ -29,6 +31,8 @@ def render(
     notes: dict[str, Keynote],
     geom: GeometryRequest,
     standards: Standards,
+    members: MemberTakeoff | None = None,
+    lumber_list: LumberList | None = None,
 ) -> str:
     out: list[str] = []
     out.append(f"PLAN SET: {plan.path.name}")
@@ -89,6 +93,26 @@ def render(
             f"{scheds.shearwalls.sheet_id} directly."
         )
 
+    # ---- members ----------------------------------------------------------
+    if members is not None:
+        out.append(_h("2b. MEMBERS CALLED OUT ON THE FRAMING SHEETS"))
+        for m in members.members:
+            state = "(E)" if m.existing else "new"
+            extra = " pressure treated" if m.treated else ""
+            out.append(
+                f"  {state:<5}{m.kind:<9}{m.tag:<12}{str(m.size or '-'):<12}"
+                f"{m.material or '':<9}{extra}   [{m.sheet_id}]"
+            )
+        if members.unresolved:
+            out.append(
+                "\n  ! Detected but unreadable (rotated or split annotations): "
+                + ", ".join(members.unresolved)
+            )
+            out.append(
+                "    Their specifications are not in this takeoff. Read them off "
+                "the sheet."
+            )
+
     # ---- scope ------------------------------------------------------------
     out.append(_h("3. SCOPE (from keynotes)"))
     buckets: dict[Scope, list[Keynote]] = {}
@@ -127,7 +151,7 @@ def render(
 
     # ---- lumber list ------------------------------------------------------
     out.append(_h("5. LUMBER LIST"))
-    if not geom.complete:
+    if lumber_list is None:
         out.append(
             f"NOT PRODUCED - {len(geom.outstanding)} of {len(geom.measurements)} "
             "measurements outstanding."
@@ -137,7 +161,31 @@ def render(
             "measurements above\n(--measurements file.yaml) and re-run."
         )
     else:
-        out.append("(rules engine not yet implemented - stage 4)")
+        out.append(
+            f"\n  {'item':<30}{'size':<16}{'len':>5}{'qty':>7}  unit"
+        )
+        out.append("  " + "-" * 66)
+        for it in lumber_list.items:
+            length = f"{it.length_ft:g}" if it.length_ft else "-"
+            qty = f"{it.quantity:g}"
+            out.append(
+                f"  {it.description[:29]:<30}{str(it.size)[:15]:<16}"
+                f"{length:>5}{qty:>7}  {it.unit}"
+            )
+        out.append("\n  Provenance:")
+        for it in lumber_list.items:
+            out.append(f"    {it.description[:28]:<30} <- {it.source}")
+            if it.note:
+                out.append(f"    {'':<30}    {it.note}")
+
+        if lumber_list.assumptions:
+            out.append("\n  Assumptions:")
+            for a in lumber_list.assumptions:
+                out.append(f"    - {a}")
+        if lumber_list.warnings:
+            out.append("\n  NOT INCLUDED / UNVERIFIED:")
+            for w in lumber_list.warnings:
+                out.append(f"    ! {w}")
 
     if not standards.confirmed:
         out.append(

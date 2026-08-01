@@ -4,9 +4,9 @@ Reads a residential plan set and pulls out what a framing takeoff needs:
 schedules, material specs, and the scope split between new work, demolition and
 existing construction. Internal tool for BARC Builder Group.
 
-Status: **stages 1–3 working, stage 4 (rules engine) not built.** The tool
-reports what it read and what it still needs; it does not yet produce a lumber
-list.
+Status: **all four stages working.** Given the measurements the drawings omit,
+it produces a lumber list with provenance on every line. The framing standards
+it prices against are seeded defaults and still need review.
 
 ## Why it works this way
 
@@ -66,8 +66,9 @@ Requires `poppler-utils` (`pdftotext`, `pdfinfo`) and `pyyaml`.
 |---|---|---|---|
 | 1 | `pdfdoc`, `index` | Split sheets, read the text layer, identify each sheet, reconcile against the cover-sheet index | Deterministic |
 | 2 | `tables`, `schedules`, `keynotes` | Rebuild schedules from coordinates; read keynotes and classify scope | Deterministic |
+| 2b | `members` | Read beam, column and rafter callouts annotated on the framing sheets | Deterministic |
 | 3 | `geometry` | State the measurements needed; offer dimensions actually printed on the sheets as candidates | Human supplies values |
-| 4 | — | Apply BARC standards to produce the lumber list | **Not built** |
+| 4 | `lumber` | Apply BARC standards to produce the lumber list | Arithmetic, fully traced |
 
 Stage 3 is isolated on purpose. Its uncertainty is the kind that produces a
 wrong lumber order, so it is kept out of stages 1–2 rather than blended into
@@ -89,6 +90,25 @@ Run against the reference progress set (23 sheets), it reports:
   rather than guessed.
 - **Every schedule** on S1.0: header (span → size, stud and jack counts),
   ceiling joist, pad, and column connector.
+- **Member callouts** off the framing sheets — `PB2 5.5x7.5 24F-V4 GLU-LAM`
+  including its *pressure treated* qualifier from the line below, plus the
+  4x6 / 6x6 / 4x12 columns and the PSL trimmer.
+
+## What it refuses to do
+
+Every one of these is a place where a plausible guess would have produced a
+worse outcome than an admission:
+
+- **It will not size rafters from the ceiling joist schedule.** That schedule
+  is for *uninhabitable attics with limited storage* at 20 psf live / 10 psf
+  dead; these rafters carry the roof at 20/12.2 per S0.0. An early version
+  substituted it and specified 2x8 where the plan calls out 2x10 — an
+  undersized member, arrived at silently. It now omits rafters and says why.
+- **It will not run on partial measurements.** A lumber list built on a guessed
+  roof area is worse than no list, because it looks like an answer.
+- **It will not invent specs for callouts it could not read.** `RB1`, `PB1` and
+  `RFTR` are set on rotated or split annotations; they are named as unreadable
+  rather than inferred from a similar member nearby.
 
 ## Known limits
 
@@ -104,6 +124,9 @@ Run against the reference progress set (23 sheets), it reports:
 - **Keynote text carries kerning artefacts** from the CAD export (`MA TCH`,
   `REMOV ED`). Matching ignores whitespace entirely, so classification is
   unaffected, but displayed text looks odd.
+- **Rafter pitch is a flag, not an extraction** (`--pitch`, default 4:12).
+- **Beam lengths are not computed** — beams are listed one-per-callout with
+  length to be confirmed, since the plans do not dimension them.
 - **Only tested against one office's sheets** (Brad Cox Architect / MHA
   Consulting Engineers). Sheet layout conventions vary; `schedules.py` is where
   office-specific knowledge is meant to live.
