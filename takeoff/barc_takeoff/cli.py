@@ -22,12 +22,13 @@ from . import (
     members,
     pdfdoc,
     report,
+    scaling,
     schedules,
     standards,
 )
 
 
-def _as_dict(plan, recon, scheds, notes, geom, std, mem, lst):
+def _as_dict(plan, recon, scheds, notes, geom, std, mem, lst, sc):
     return {
         "plan_set": plan.path.name,
         "pages": len(plan.sheets),
@@ -106,6 +107,12 @@ def _as_dict(plan, recon, scheds, notes, geom, std, mem, lst):
         },
         "blocked_on": [m.key for m in geom.outstanding],
         "standards_confirmed": std.confirmed,
+        "scale": {
+            "points_per_foot": sc.points_per_foot,
+            "method": sc.method,
+            "agreement": sc.agreement,
+            "verified": sc.verified,
+        },
     }
 
 
@@ -150,6 +157,11 @@ def main(argv: list[str] | None = None) -> int:
         with open(args.measurements) as fh:
             geom.apply(yaml.safe_load(fh) or {})
 
+    scale = scaling.calibrate(plan)
+    grid_sheets = ("A-5.1", "S3.0")
+    grids = {sid: scaling.read_grid(plan, sid) for sid in grid_sheets}
+    xcheck = scaling.cross_check(plan, scale, ("A-3.1", "A-5.1", "S1.0", "S3.0"))
+
     detected, tally = geometry.detect_pitch(plan)
     pitch = args.pitch or detected or "4:12"
 
@@ -166,14 +178,15 @@ def main(argv: list[str] | None = None) -> int:
     if args.json:
         print(
             json.dumps(
-                _as_dict(plan, recon, scheds, notes, geom, std, mem, lumber_list),
+                _as_dict(plan, recon, scheds, notes, geom, std, mem, lumber_list, scale),
                 indent=2,
             )
         )
     else:
         print(
             report.render(
-                plan, recon, scheds, notes, geom, std, mem, lumber_list
+                plan, recon, scheds, notes, geom, std, mem, lumber_list,
+                scale=scale, grids=grids, cross_check=xcheck,
             )
         )
 

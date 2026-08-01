@@ -14,6 +14,7 @@ from .keynotes import Keynote, Scope
 from .lumber import LumberList
 from .members import MemberTakeoff
 from .pdfdoc import PlanSet
+from .scaling import Grid, Scale
 from .schedules import Schedules
 from .standards import Standards
 
@@ -33,6 +34,9 @@ def render(
     standards: Standards,
     members: MemberTakeoff | None = None,
     lumber_list: LumberList | None = None,
+    scale: Scale | None = None,
+    grids: dict[str, Grid] | None = None,
+    cross_check: str = "",
 ) -> str:
     out: list[str] = []
     out.append(f"PLAN SET: {plan.path.name}")
@@ -139,6 +143,40 @@ def render(
             "\n  ! 'unknown' notes were not classified automatically and need a "
             "scope decision."
         )
+
+    # ---- scale and grid -----------------------------------------------------
+    if scale is not None:
+        out.append(_h("3b. SCALE AND GRID"))
+        out.append(f"Scale: {scale.describe()}")
+        out.append(
+            "  " + ("VERIFIED by independent datum pairs." if scale.verified
+                    else "NOT verified - treat any scaled figure with suspicion.")
+        )
+        if cross_check:
+            out.append(f"  {cross_check}")
+        out.append(
+            "\n  The sheets say DO NOT SCALE DRAWINGS. Distances below are "
+            "derived from\n  drawing geometry and must be field-verified before "
+            "anything is ordered.\n  Note also that A-3.0 states dimensions "
+            'marked "(E)" are +/- per the as-built\n  set, so existing '
+            "construction carries that uncertainty on top."
+        )
+        for sid, grid in (grids or {}).items():
+            xs, ys = grid.bays("x", scale), grid.bays("y", scale)
+            if not xs and not ys:
+                continue
+            out.append(f"\n  {sid} column grid:")
+            if xs:
+                out.append(
+                    "    numbered  " + "  ".join(f"{a}-{b} {d:.1f}'" for a, b, d in xs)
+                )
+            if ys:
+                out.append(
+                    "    lettered  " + "  ".join(f"{a}-{b} {d:.1f}'" for a, b, d in ys)
+                )
+            sx, sy = grid.span("x", scale), grid.span("y", scale)
+            if sx and sy:
+                out.append(f"    overall   {sx:.1f}' x {sy:.1f}' grid to grid")
 
     # ---- geometry ---------------------------------------------------------
     out.append(_h("4. MEASUREMENTS REQUIRED"))

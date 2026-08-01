@@ -32,12 +32,27 @@ callout got missed on the first pass. The reliable signal is that every box in
 a rotated column shares the same width, because that width is the line height
 regardless of character count.
 
-**The geometry mostly isn't there.** Every sheet is stamped *"DO NOT SCALE
-DRAWINGS"*, the structural sheets say *"ALL DIMENSIONS REFER TO ARCHITECTURAL
-DRAWINGS"*, and the architectural sheets dimension almost nothing about the new
-patio structure. Numbers the architect did not draw cannot be recovered by
-reading harder. So the tool asks for them instead of inventing them, and
-refuses to emit quantities until it has them.
+**The dimensions aren't annotated, but the geometry is drawn.** Every sheet is
+stamped *"DO NOT SCALE DRAWINGS"* and almost nothing about the new patio
+structure is dimensioned. It does not follow that the numbers are unrecoverable:
+these are vector drawings, so the linework carries true coordinates, and at a
+known scale those coordinates are lengths.
+
+The scale is measured, not assumed. A-6.1's elevation datums are labelled at
+known heights, so the distance between two of them divided by their difference
+in feet gives pt/ft directly — **18.00, exactly 1/4" = 1'-0"**, agreed by
+multiple independent datum pairs. The shared column grid then spans an identical
+1194 pt on the architect's and the engineer's sheets, confirming both offices
+plotted alike, so one calibration serves the set.
+
+What is *not* solved is deciding which linework constitutes a given member. Two
+approaches were tried and rejected: matching a beam to the nearest line of
+matching orientation returned a 3 ft tick mark for a porch beam, and matching a
+beam to a pair of lines its own width apart produced a false positive at 4.88"
+for a member specified at 5.5". So the tool reports a calibrated scale and the
+column grid in feet — a ruler and a reference an estimator already uses — and
+leaves identification to a person. It still refuses to emit quantities until the
+measurements are supplied.
 
 The split that follows: **what the engineer specified** is read from the plans
 and is not negotiable; **how BARC builds and buys** lives in
@@ -78,7 +93,7 @@ Requires `poppler-utils` (`pdftotext`, `pdfinfo`) and `pyyaml`.
 | 1 | `pdfdoc`, `index` | Split sheets, read the text layer, identify each sheet, reconcile against the cover-sheet index | Deterministic |
 | 2 | `tables`, `schedules`, `keynotes` | Rebuild schedules from coordinates; read keynotes and classify scope | Deterministic |
 | 2b | `members` | Read beam, column and rafter callouts annotated on the framing sheets | Deterministic |
-| 3 | `geometry` | State the measurements needed; offer dimensions actually printed on the sheets as candidates | Human supplies values |
+| 3 | `geometry`, `scaling` | State the measurements needed; verify the drawing scale and report the column grid in feet | Scale measured; values human-supplied |
 | 4 | `lumber` | Apply BARC standards to produce the materials list | Arithmetic, fully traced |
 
 Stage 3 is isolated on purpose. Its uncertainty is the kind that produces a
@@ -165,6 +180,13 @@ studs, plates and insulation — those paths run when `new_wall_lf` is non-zero.
 - **Keynote text carries kerning artefacts** from the CAD export (`MA TCH`,
   `REMOV ED`). Matching ignores whitespace entirely, so classification is
   unaffected, but displayed text looks odd.
+- **Scaled distances are not fed into the order.** The scale is verified and the
+  grid is reported, but nothing derived by scaling becomes a quantity on its
+  own. "DO NOT SCALE DRAWINGS" is the architect's position and it stands;
+  A-3.0 adds that dimensions marked `(E)` are +/- per the as-built set, so
+  existing construction carries that uncertainty on top of any scaling error.
+- **Member geometry is not auto-identified** — see above. The grid is the
+  measuring aid; the estimator decides what to measure.
 - **Roof pitch is read off the roof plan** (`4:12` here, with `2:12` and `1:12`
   also present on other planes); `--pitch` overrides. Only the dominant pitch is
   applied, so a multi-slope roof needs checking.

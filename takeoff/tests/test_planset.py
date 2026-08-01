@@ -11,7 +11,15 @@ from pathlib import Path
 
 import pytest
 
-from barc_takeoff import geometry, index, keynotes, members, pdfdoc, schedules
+from barc_takeoff import (
+    geometry,
+    index,
+    keynotes,
+    members,
+    pdfdoc,
+    scaling,
+    schedules,
+)
 
 FIXTURE = os.environ.get("BARC_TAKEOFF_FIXTURE")
 
@@ -185,3 +193,37 @@ class TestMemberCallouts:
 
     def test_nothing_is_left_unresolved_on_this_set(self, mem):
         assert mem.unresolved == []
+
+
+class TestScaleCalibration:
+    def test_scale_is_measured_not_assumed(self, plan):
+        """Labelled elevation datums give pt/ft directly."""
+        s = scaling.calibrate(plan)
+        assert s.verified
+        assert s.points_per_foot == pytest.approx(18.0, abs=0.05)
+        assert "datum" in s.method
+
+    def test_displaced_labels_do_not_skew_the_result(self, plan):
+        """Floor and Grade labels sit off their own lines; taking either alone
+        gives a scale 10-20% wrong, so agreement across pairs is required."""
+        s = scaling.calibrate(plan)
+        assert "agree" in s.agreement
+
+    def test_both_offices_plotted_at_one_scale(self, plan):
+        """The architect's and engineer's sheets share a column grid."""
+        s = scaling.calibrate(plan)
+        msg = scaling.cross_check(plan, s, ("A-3.1", "A-5.1", "S1.0", "S3.0"))
+        assert "identical" in msg and "WARNING" not in msg
+
+    def test_grid_agrees_between_architectural_and_structural(self, plan):
+        s = scaling.calibrate(plan)
+        a = dict(((x, y), d) for x, y, d in scaling.read_grid(plan, "A-5.1").bays("x", s))
+        b = dict(((x, y), d) for x, y, d in scaling.read_grid(plan, "S3.0").bays("x", s))
+        for key in [("5", "6"), ("6", "7"), ("3", "4")]:
+            assert abs(a[key] - b[key]) < 0.3, key
+
+    def test_grid_span_is_plausible_for_this_house(self, plan):
+        """1,879 sf single storey - a 66 ft grid span is the right order."""
+        s = scaling.calibrate(plan)
+        span = scaling.read_grid(plan, "A-5.1").span("x", s)
+        assert 50 < span < 90
