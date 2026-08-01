@@ -16,7 +16,7 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass, field
 
-from .pdfdoc import PlanSet, Sheet
+from .pdfdoc import PlanSet, Sheet, Word
 
 # Sheets carrying framing callouts, in the order they are read.
 FRAMING_SHEETS = ("S3.0", "S2.0", "S1.0")
@@ -34,7 +34,9 @@ _DIM = r"\d+(?:\.\d+)?x\d+(?:\.\d+)?"
 _BEAM = re.compile(rf"\b((?:PB|RB|GB|FB|HDR)\d+)\s+({_DIM})", re.I)
 _COLUMN = re.compile(rf"\bCOL\s+({_DIM})", re.I)
 _TRIMMER = re.compile(rf"\bTRIMMER\s+({_DIM})", re.I)
-_RAFTER = re.compile(r"\bRFTR\s+(\d+x\d+)(?:\s*@\s*(\d+)\s*\"?\s*OC)?", re.I)
+# Roof rafters are tagged RR on these sheets. RFTR appears only as "(E) RFTR
+# UNDERNEATH" - the existing rafters - so it must not be read as a new member.
+_RAFTER = re.compile(r"\bRR\s+(\d+x\d+)(?:\s*@\s*(\d+)\s*\"?\s*OC)?", re.I)
 
 
 @dataclass(frozen=True)
@@ -47,6 +49,8 @@ class Member:
     treated: bool
     note: str
     sheet_id: str | None
+    #: Set only for rafters, from an "@ 24\" OC" qualifier on the callout.
+    spacing_in: float | None = None
 
     @property
     def new(self) -> bool:
@@ -75,6 +79,72 @@ def _lines(sheet: Sheet, tol: int = 5) -> list[str]:
         " ".join(w.text for w in sorted(ws, key=lambda w: w.x))
         for _, ws in sorted(buckets.items())
     ]
+
+
+def _rotated_runs(sheet: Sheet) -> list[tuple[str, str]]:
+    """Recover callouts set on rotated (vertical) leaders.
+
+    Beams running north-south on the plan are labelled with type rotated to
+    match, which leaves each word in its own tall, narrow box stacked in a
+    column. Two things make them readable: a rotated word's bounding box is
+    taller than it is wide, and the stack reads bottom-to-top, so reversing a
+    column by descending y restores "RB1 5.5x11.875 24F-V4 GLU-LAM".
+
+    Returns (text, context) per run. Context adds neighbouring columns - a
+    qualifier like "EXTERIOR TREATED" is frequently set as its own column
+    beside the callout it modifies.
+    """
+    candidates = [w for w in sheet.drawing_words if w.cx < sheet.width * 0.72]
+
+    # Group by x against each column's running centre. Matching the first key
+    # within tolerance instead lets a column created elsewhere on the sheet
+    # claim words in passing, which is what split `RR 2x10 @ 24" OC` in two.
+    columns: list[list[Word]] = []
+    for word in sorted(candidates, key=lambda w: (w.cx, w.y)):
+        if columns and abs(
+            sum(v.cx for v in columns[-1]) / len(columns[-1]) - word.cx
+        ) < 8:
+            columns[-1].append(word)
+        else:
+            columns.append([word])
+
+    runs: list[list[Word]] = []
+    for words in columns:
+        words.sort(key=lambda w: w.cy)
+        current = [words[0]]
+        for prev, word in zip(words, words[1:]):
+            if word.y - prev.y2 < 14:
+                current.append(word)
+            else:
+                runs.append(current)
+                current = [word]
+        runs.append(current)
+
+    out = []
+    for run in runs:
+        if len(run) < 3 or not any(len(w.text) >= 3 for w in run):
+            continue
+        # Rotated words are laid out along y, so every box in the column is
+        # about one line-height wide regardless of how many characters it holds.
+        # That uniform width is the reliable signal. Per-word aspect ratio is
+        # not: rotated "OC" and "24" still measure wider than they are tall,
+        # which is exactly how the rafter callout was missed.
+        widths = [w.x2 - w.x for w in run]
+        if max(widths) - min(widths) > 5 or max(widths) > 60:
+            continue
+        text = " ".join(w.text for w in sorted(run, key=lambda w: -w.cy))
+        lo, hi = min(w.y for w in run), max(w.y2 for w in run)
+        cx = run[0].cx
+        neighbours = [
+            " ".join(w.text for w in sorted(other, key=lambda w: -w.cy))
+            for other in runs
+            if other is not run
+            and abs(other[0].cx - cx) < 20
+            and min(w.y for w in other) < hi
+            and max(w.y2 for w in other) > lo
+        ]
+        out.append((text, " ".join(neighbours)))
+    return out
 
 
 def _material(text: str) -> str | None:
@@ -155,9 +225,10 @@ def _parse_line(line: str, sheet_id: str | None, below: str = "") -> list[Member
     for m in re.finditer(_RAFTER, line):
         found.append(
             Member(
-                tag="RFTR",
+                tag="RR",
                 kind="rafter",
                 size=m.group(1),
+                spacing_in=float(m.group(2)) if m.group(2) else None,
                 material=None,
                 existing=existing,
                 treated=treated,
@@ -181,13 +252,18 @@ def read(plan: PlanSet) -> MemberTakeoff:
 
         for word in sheet.drawing_words:
             token = word.text.upper().strip(".,")
-            if BEAM_TAG.match(token) or token in {"RFTR", "TRIMMER"}:
+            if BEAM_TAG.match(token) or token in {"RR", "TRIMMER"}:
                 anchors_found.add(token)
 
         lines = _lines(sheet)
-        for i, line in enumerate(lines):
-            below = lines[i + 1] if i + 1 < len(lines) else ""
-            for member in _parse_line(line, sheet_id, below):
+        candidates = [
+            (line, lines[i + 1] if i + 1 < len(lines) else "")
+            for i, line in enumerate(lines)
+        ]
+        candidates += _rotated_runs(sheet)
+
+        for line, context in candidates:
+            for member in _parse_line(line, sheet_id, context):
                 # The same callout is printed on several framing sheets; a
                 # member is counted once per distinct specification.
                 key = (member.tag, member.size, member.material, member.existing, member.treated)

@@ -22,6 +22,14 @@ accurate than reading the rendered image: `pdftotext -layout` on the reference s
 silently dropped two rows of the header schedule, and a model reading a
 downsampled render can make the same class of error without saying so.
 
+**Rotated text is readable, but not by aspect ratio.** Callouts on vertical
+leaders stack one word per box, reading bottom-to-top. The tempting test — a
+rotated word's box is taller than it is wide — fails on short tokens: rotated
+`OC` and `24` still measure wider than tall, which is precisely how the rafter
+callout got missed on the first pass. The reliable signal is that every box in
+a rotated column shares the same width, because that width is the line height
+regardless of character count.
+
 **The geometry mostly isn't there.** Every sheet is stamped *"DO NOT SCALE
 DRAWINGS"*, the structural sheets say *"ALL DIMENSIONS REFER TO ARCHITECTURAL
 DRAWINGS"*, and the architectural sheets dimension almost nothing about the new
@@ -90,9 +98,11 @@ Run against the reference progress set (23 sheets), it reports:
   rather than guessed.
 - **Every schedule** on S1.0: header (span → size, stud and jack counts),
   ceiling joist, pad, and column connector.
-- **Member callouts** off the framing sheets — `PB2 5.5x7.5 24F-V4 GLU-LAM`
-  including its *pressure treated* qualifier from the line below, plus the
-  4x6 / 6x6 / 4x12 columns and the PSL trimmer.
+- **Member callouts** off the framing sheets, including ones set on rotated
+  leaders. `PB2 5.5x7.5 24F-V4 GLU-LAM` with its *pressure treated* qualifier;
+  `RB1 5.5x11.875 24F-V4 GLU-LAM` read bottom-to-top off a vertical leader; the
+  rafters as `RR 2x10 @ 24" OC`; the 4x6 / 6x6 / 4x12 columns and the PSL
+  trimmer. Nothing on this set is left unresolved.
 
 ## What it refuses to do
 
@@ -106,9 +116,13 @@ worse outcome than an admission:
   undersized member, arrived at silently. It now omits rafters and says why.
 - **It will not run on partial measurements.** A lumber list built on a guessed
   roof area is worse than no list, because it looks like an answer.
-- **It will not invent specs for callouts it could not read.** `RB1`, `PB1` and
-  `RFTR` are set on rotated or split annotations; they are named as unreadable
-  rather than inferred from a similar member nearby.
+- **It will not invent specs for callouts it cannot read.** Anything whose tag
+  is visible but whose specification is not gets named as unresolved rather
+  than inferred from a similar member nearby. (On this set that list is now
+  empty, but the mechanism is what keeps the next set honest.)
+- **It will not treat `(E) RFTR` as new work.** On these sheets `RFTR` labels
+  the *existing* rafters underneath; the new roof rafters are tagged `RR`.
+  Reading the wrong tag would have priced rafters that are already built.
 
 ## Known limits
 
@@ -124,7 +138,8 @@ worse outcome than an admission:
 - **Keynote text carries kerning artefacts** from the CAD export (`MA TCH`,
   `REMOV ED`). Matching ignores whitespace entirely, so classification is
   unaffected, but displayed text looks odd.
-- **Rafter pitch is a flag, not an extraction** (`--pitch`, default 4:12).
+- **Rafter pitch is a flag, not an extraction** (`--pitch`, default 4:12). The
+  roof plan does print `4:12`, so this could be read directly.
 - **Beam lengths are not computed** — beams are listed one-per-callout with
   length to be confirmed, since the plans do not dimension them.
 - **Only tested against one office's sheets** (Brad Cox Architect / MHA

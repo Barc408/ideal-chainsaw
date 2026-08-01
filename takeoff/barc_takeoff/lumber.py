@@ -131,11 +131,13 @@ def build(
     # calls out 2x10 - an undersized member, arrived at silently.
     rafter = next((m for m in members.of_kind("rafter") if m.new), None)
     if rafter and rafter.size:
-        size, spacing_in, src = rafter.size, 24.0, f"RFTR callout, {rafter.sheet_id}"
+        size = rafter.size
+        spacing_in = rafter.spacing_in or 24.0
+        src = f"{rafter.tag} callout, {rafter.sheet_id}"
     else:
         size, spacing_in, src = None, 24.0, ""
         out.warnings.append(
-            "Rafter size NOT determined: the RFTR callout could not be read, and "
+            "Rafter size NOT determined: the rafter callout could not be read, and "
             "the ceiling joist schedule is a different load case (attic storage, "
             "not roof) so it was not substituted. Rafters and rafter blocking "
             "are omitted from this list - read the callout off the framing sheet."

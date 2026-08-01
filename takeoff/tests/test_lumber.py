@@ -62,8 +62,8 @@ def scheds():
     )
 
 
-def rafter_member(size="2x10"):
-    return Member("RFTR", "rafter", size, None, False, False, "", "S3.0")
+def rafter_member(size="2x10", spacing=24.0):
+    return Member("RR", "rafter", size, None, False, False, "", "S3.0", spacing)
 
 
 def column(size):
@@ -95,16 +95,26 @@ class TestRafters:
         result = build(scheds, mem, make_geom(), standards)
         rafters = next(i for i in result.items if i.description == "Rafters")
         assert rafters.size == "2x10"
-        assert "RFTR callout" in rafters.source
+        assert "RR callout" in rafters.source
 
     def test_never_falls_back_to_the_ceiling_joist_schedule(self, scheds, standards):
         """The joist schedule is attic-storage loading, not roof loading.
 
         Substituting it here would specify 2x8 where the plan calls out 2x10.
         """
-        result = build(scheds, MemberTakeoff(unresolved=["RFTR"]), make_geom(), standards)
+        result = build(scheds, MemberTakeoff(unresolved=["RR"]), make_geom(), standards)
         assert not any(i.description == "Rafters" for i in result.items)
         assert any("Rafter size NOT determined" in w for w in result.warnings)
+
+    def test_spacing_comes_from_the_callout_not_a_default(self, scheds, standards):
+        """The callout reads RR 2x10 @ 24" OC; 16" OC would need more rafters."""
+        wide = build(scheds, MemberTakeoff(members=[rafter_member(spacing=24)]),
+                     make_geom(), standards)
+        tight = build(scheds, MemberTakeoff(members=[rafter_member(spacing=16)]),
+                      make_geom(), standards)
+        w = next(i for i in wide.items if i.description == "Rafters")
+        t = next(i for i in tight.items if i.description == "Rafters")
+        assert t.quantity > w.quantity
 
     def test_count_covers_both_roof_planes(self, scheds, standards):
         mem = MemberTakeoff(members=[rafter_member()])

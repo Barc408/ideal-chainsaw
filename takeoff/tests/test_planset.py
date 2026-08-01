@@ -166,6 +166,22 @@ class TestMemberCallouts:
         sizes = {m.size for m in mem.of_kind("column")}
         assert {"4x6", "6x6"} <= sizes
 
-    def test_rotated_and_split_callouts_are_reported_not_guessed(self, mem):
-        assert "RB1" in mem.unresolved
-        assert not any(m.tag == "RB1" for m in mem.members)
+    def test_reads_rotated_callouts(self, mem):
+        """RB1 is set on a rotated leader, reading bottom-to-top."""
+        rb1 = next(m for m in mem.of_kind("beam") if m.tag == "RB1")
+        assert rb1.size == "5.5x11.875"
+        assert rb1.material == "GLU-LAM"
+
+    def test_reads_the_rafter_callout_with_its_spacing(self, mem):
+        """RR 2x10 @ 24" OC - rotated, and its short tokens ("OC", "24")
+        measure wider than tall, so aspect ratio alone does not find it."""
+        rr = next(m for m in mem.of_kind("rafter") if m.new)
+        assert rr.size == "2x10"
+        assert rr.spacing_in == 24
+
+    def test_existing_rafters_are_not_read_as_new_members(self, mem):
+        """RFTR appears only as "(E) RFTR UNDERNEATH" on this set."""
+        assert all(m.tag != "RFTR" for m in mem.members)
+
+    def test_nothing_is_left_unresolved_on_this_set(self, mem):
+        assert mem.unresolved == []
