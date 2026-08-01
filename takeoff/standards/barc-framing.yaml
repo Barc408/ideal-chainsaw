@@ -1,0 +1,80 @@
+# BARC Builder Group - framing standards
+#
+# These are OUR conventions, not the drawings'. The plan set supplies member
+# sizes and geometry; this file supplies how we actually build and buy. Numbers
+# here are seeded from common Bay Area practice and MUST be reviewed against
+# how BARC really orders before any output is trusted.
+#
+# Anything the engineer specifies (species, grade, sheathing, nailing) is read
+# from the plan set and overrides the defaults below.
+
+review_status: UNCONFIRMED  # set to CONFIRMED once Preston has reviewed
+
+walls:
+  stud_spacing_in: 16
+  # Studs at each end of a wall run, before openings are considered.
+  end_studs: 2
+  plates:
+    # One bottom plate, two top plates, as called out on S0.0 for bearing walls.
+    bottom: 1
+    top: 2
+  corners:
+    # Studs per corner for a California (three-stud) corner.
+    studs: 3
+  partition_intersection_studs: 2
+  # Blocking rows for walls over this height; S0.0 requires firestopping at
+  # 10' and mid-height rows on taller walls.
+  blocking_row_height_ft: 10
+
+openings:
+  # Header sizing comes from the engineer's HEADER SCHEDULE, including stud and
+  # jack counts, so nothing is assumed here. Cripples are ours.
+  cripple_spacing_in: 16
+  sill_plates: 1
+
+roof:
+  # Rafter size and spacing come from the plans; these are ordering rules.
+  # Extra rafter at each end of a run.
+  end_rafters: 1
+  blocking_at_bearing: true
+  # S0.0: bridging/solid blocking at 8'-0" maximum.
+  blocking_spacing_ft: 8
+
+sheathing:
+  panel_width_ft: 4
+  panel_length_ft: 8
+  # Fraction added to sheet counts to cover cuts. Roof planes with hips and
+  # valleys waste more than rectangular walls.
+  waste:
+    walls: 0.10
+    roof_simple: 0.10
+    roof_cut_up: 0.15
+
+waste:
+  # Applied to linear-foot lumber quantities before converting to stock pieces.
+  studs: 0.05
+  plates: 0.10
+  blocking: 0.15
+  rafters: 0.07
+
+stock_lengths_ft:
+  # Lengths BARC actually orders, longest first. The optimiser picks the
+  # shortest stock that covers each cut.
+  "2x4": [8, 10, 12, 14, 16, 20]
+  "2x6": [8, 10, 12, 14, 16, 20]
+  "2x8": [8, 10, 12, 14, 16, 20]
+  "2x10": [10, 12, 14, 16, 20]
+  "2x12": [10, 12, 14, 16, 20]
+  "4x4": [8, 10, 12]
+  "4x6": [8, 10, 12, 16]
+  "6x6": [8, 10, 12, 16]
+
+# Pre-cut studs are bought by the piece rather than cut from stock.
+precut_studs:
+  "8ft_wall": { length: "92-5/8", size: "2x4" }
+  "9ft_wall": { length: "104-5/8", size: "2x4" }
+
+concrete:
+  # Added to neat pad volumes for over-excavation and spillage.
+  waste: 0.10
+  yards_per_cubic_foot: 0.037037

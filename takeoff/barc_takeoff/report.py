@@ -1,0 +1,148 @@
+"""Render what was read off a plan set, and what is still needed.
+
+The report is deliberately explicit about provenance. Every extracted figure
+names the sheet it came from, and everything unread - raster sheets, missing
+sheets, undimensioned geometry - is listed rather than omitted, because a
+takeoff that quietly drops a sheet looks exactly like one that covered it.
+"""
+
+from __future__ import annotations
+
+from .geometry import GeometryRequest
+from .index import Reconciliation
+from .keynotes import Keynote, Scope
+from .pdfdoc import PlanSet
+from .schedules import Schedules
+from .standards import Standards
+
+RULE = "=" * 78
+
+
+def _h(title: str) -> str:
+    return f"\n{RULE}\n{title}\n{RULE}"
+
+
+def render(
+    plan: PlanSet,
+    recon: Reconciliation,
+    scheds: Schedules,
+    notes: dict[str, Keynote],
+    geom: GeometryRequest,
+    standards: Standards,
+) -> str:
+    out: list[str] = []
+    out.append(f"PLAN SET: {plan.path.name}")
+    out.append(f"{len(plan.sheets)} pages")
+
+    # ---- sheets -----------------------------------------------------------
+    out.append(_h("1. SHEETS"))
+    out.append(recon.summary())
+    if recon.missing:
+        out.append(
+            "  ! A sheet listed in the index is absent. Anything it carried is "
+            "not in this takeoff."
+        )
+    raster = plan.raster_sheets
+    if raster:
+        out.append(
+            f"\n  {len(raster)} sheet(s) are flattened images with no readable text; "
+            "their content was not extracted:"
+        )
+        for s in raster:
+            out.append(f"    - {s.sheet_id or f'page {s.page}'}: {s.title or ''}")
+
+    # ---- schedules --------------------------------------------------------
+    out.append(_h(f"2. SCHEDULES (from {scheds.source_sheet or 'n/a'})"))
+    if scheds.headers:
+        out.append("\nHeader schedule - span to framing:")
+        out.append(f"  {'span':<14}{'width':<14}{'depth':<8}{'studs':<7}jacks")
+        for h in scheds.headers:
+            out.append(
+                f"  {h.span_label:<14}{h.width:<14}{h.depth:<8}{h.studs:<7}{h.jacks}"
+            )
+    if scheds.joists:
+        out.append("\nCeiling joist schedule:")
+        out.append(f"  {'type':<6}{'max span':<14}{'size':<8}{'spacing':<10}hanger")
+        for j in scheds.joists:
+            out.append(
+                f"  {j.type:<6}{j.span_label:<14}{j.size:<8}{j.spacing:<10}{j.hanger}"
+            )
+    if scheds.pads:
+        out.append("\nPad schedule:")
+        for p in scheds.pads:
+            cf = (p.width_in * p.length_in * p.depth_in) / 1728
+            out.append(
+                f"  {p.name:<8}{p.width_in:.0f}x{p.length_in:.0f}x{p.depth_in:.0f}in"
+                f"   {cf:5.2f} cf   {p.rebar}"
+            )
+    if scheds.connectors:
+        out.append("\nColumn connectors:")
+        for c in scheds.connectors:
+            out.append(f"  {c.post:<12}base {c.base:<14}cap {c.cap}")
+    if scheds.shearwalls and scheds.shearwalls.needs_review:
+        out.append(
+            "\nShearwall schedule extracted but NOT parsed into per-type values."
+        )
+        out.append(
+            "  Cells merged across types cannot be told from tightly packed "
+            "distinct values\n  without the ruled cell boundaries. Read it off "
+            f"{scheds.shearwalls.sheet_id} directly."
+        )
+
+    # ---- scope ------------------------------------------------------------
+    out.append(_h("3. SCOPE (from keynotes)"))
+    buckets: dict[Scope, list[Keynote]] = {}
+    for note in notes.values():
+        buckets.setdefault(note.scope, []).append(note)
+    for scope in (Scope.NEW, Scope.DEMOLISH, Scope.EXISTING_REMAIN, Scope.UNKNOWN):
+        items = buckets.get(scope, [])
+        out.append(f"\n{scope.value}: {len(items)}")
+        if scope in (Scope.NEW, Scope.DEMOLISH, Scope.UNKNOWN):
+            for n in items:
+                out.append(f"    {n.code}  {n.text[:66]}")
+    if buckets.get(Scope.UNKNOWN):
+        out.append(
+            "\n  ! 'unknown' notes were not classified automatically and need a "
+            "scope decision."
+        )
+
+    # ---- geometry ---------------------------------------------------------
+    out.append(_h("4. MEASUREMENTS REQUIRED"))
+    out.append(
+        "These are not on the sheets in usable form. The sheets carry "
+        '"DO NOT SCALE\nDRAWINGS", so they must be measured or field-verified '
+        "before quantities exist.\n"
+    )
+    for m in geom.measurements:
+        status = f"{m.value:g} {m.unit}" if m.satisfied else "NEEDED"
+        out.append(f"  [{status:>9}]  {m.label}  ({m.unit})")
+        out.append(f"               {m.why}")
+        out.append(f"               see {', '.join(m.sheets)}")
+        if m.candidates and not m.satisfied:
+            out.append(
+                f"               dimensions printed on those sheets: "
+                f"{', '.join(m.candidates[:8])}"
+            )
+        out.append("")
+
+    # ---- lumber list ------------------------------------------------------
+    out.append(_h("5. LUMBER LIST"))
+    if not geom.complete:
+        out.append(
+            f"NOT PRODUCED - {len(geom.outstanding)} of {len(geom.measurements)} "
+            "measurements outstanding."
+        )
+        out.append(
+            "\nQuantities are withheld rather than estimated. Supply the "
+            "measurements above\n(--measurements file.yaml) and re-run."
+        )
+    else:
+        out.append("(rules engine not yet implemented - stage 4)")
+
+    if not standards.confirmed:
+        out.append(
+            f"\n! Framing standards at {standards.path.name} are marked "
+            "UNCONFIRMED.\n  Waste factors and stock lengths are seeded "
+            "defaults, not BARC's actual numbers."
+        )
+    return "\n".join(out)
