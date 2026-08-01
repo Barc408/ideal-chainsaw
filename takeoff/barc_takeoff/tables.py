@@ -118,9 +118,16 @@ class Matrix:
     sheet_id: str | None
     columns: list[str]
     rows: dict[str, dict[str, str]] = field(default_factory=dict)
-    #: Cells merged across columns cannot be recovered reliably, so a matrix is
-    #: always presented for confirmation rather than consumed silently.
-    needs_review: bool = True
+    #: Rows holding a cell merged across columns. Their per-column split is
+    #: approximate; the other rows are exact.
+    merged_rows: set[str] = field(default_factory=set)
+
+    @property
+    def needs_review(self) -> bool:
+        return bool(self.merged_rows)
+
+    def exact_rows(self) -> dict[str, dict[str, str]]:
+        return {k: v for k, v in self.rows.items() if k not in self.merged_rows}
 
     def as_text(self) -> str:
         out = ["property".ljust(22) + "  ".join(c.ljust(16) for c in self.columns)]
@@ -175,6 +182,8 @@ def extract_matrix(
         min(b - a for a, b in zip(ordered, ordered[1:])) if len(ordered) > 1 else 60.0
     )
     label_edge = ordered[0] - pitch / 2
+    # Cell boundaries fall midway between adjacent column centres.
+    boundaries = [(a + b) / 2 for a, b in zip(ordered, ordered[1:])]
 
     matrix = Matrix(title=title, sheet_id=sheet.sheet_id, columns=list(centres))
     current: str | None = None
@@ -193,17 +202,40 @@ def extract_matrix(
         if current is None or not values:
             continue
 
-        # Assign each word to the column it sits under. Cells merged across
-        # columns in the drawing - "2x @ ALL PANEL EDGES" covering types A
-        # through C - cannot be told apart from a row of six tightly packed
-        # distinct values without the ruled cell boundaries, which are vector
-        # art and invisible here. Per-word assignment is exact for the
-        # quantitative rows (nailing, spacing, anchor bolts) and splits the
-        # prose rows, so the result is flagged rather than trusted blindly.
-        for w in values:
-            col = min(centres, key=lambda c: abs(centres[c] - w.cx))
-            prev = matrix.rows[current].get(col, "")
-            matrix.rows[current][col] = normalise_fractions(
-                f"{prev} {w.text}".strip()
+        # A run whose words all sit inside their own column is a row of
+        # distinct per-column values; a run where a word straddles a column
+        # boundary is a cell merged across columns, because merged text flows
+        # continuously across the boundary it covers while per-column values
+        # stay centred in their own cell. The ruled boundaries are vector art
+        # and invisible here, but they fall midway between column centres.
+        for run in _runs(values):
+            straddles = any(
+                any(w.x < b < w.x2 for b in boundaries) for w in run
             )
+            text = normalise_fractions(" ".join(w.text for w in run))
+            if straddles:
+                lo, hi = run[0].x, run[-1].x2
+                covered = [c for c, cx in centres.items() if lo - 4 <= cx <= hi + 4]
+                matrix.merged_rows.add(current)
+                for col in covered:
+                    prev = matrix.rows[current].get(col, "")
+                    matrix.rows[current][col] = f"{prev} {text}".strip()
+            else:
+                for w in run:
+                    col = min(centres, key=lambda c: abs(centres[c] - w.cx))
+                    prev = matrix.rows[current].get(col, "")
+                    matrix.rows[current][col] = normalise_fractions(
+                        f"{prev} {w.text}".strip()
+                    )
     return matrix
+
+
+def _runs(words: list[Word]) -> list[list[Word]]:
+    """Split a row into contiguous runs separated by column gutters."""
+    runs: list[list[Word]] = [[words[0]]]
+    for prev, cur in zip(words, words[1:]):
+        if cur.x - prev.x2 > CELL_GAP:
+            runs.append([cur])
+        else:
+            runs[-1].append(cur)
+    return runs

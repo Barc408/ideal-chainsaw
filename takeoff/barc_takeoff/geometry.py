@@ -67,7 +67,10 @@ REQUIRED = (
      "With pitch, gives rafter length; drives count against 24\" OC spacing.",
      ("S3.0", "A-7.0")),
     ("roof_perimeter_ft", "Eave + rake perimeter", "ft",
-     "Fascia, gutter and eave blocking quantities.", ("A-5.1",)),
+     "Fascia and eave blocking quantities.", ("A-5.1",)),
+    ("eave_length_ft", "Eave length (gutter runs)", "ft",
+     "Gutter is hung at eaves only, so this is shorter than the perimeter.",
+     ("A-5.1",)),
     ("post_count", "New post count", "each",
      "Posts, bases, caps and pad footings, per the column schedule.",
      ("S1.0", "S3.0")),
@@ -110,6 +113,29 @@ def harvest_dimensions(plan: PlanSet, sheet_ids: tuple[str, ...]) -> list[str]:
                 if hit and hit not in found:
                     found.append(hit)
     return found
+
+
+PITCH = re.compile(r"\b(\d{1,2}):12\b")
+
+
+def detect_pitch(plan: PlanSet, sheet_id: str = "A-5.1") -> tuple[str | None, dict[str, int]]:
+    """Read roof slope callouts off the roof plan.
+
+    Returns the dominant pitch and the full tally. A roof with several slopes
+    returns all of them: picking the most common would quietly apply one plane's
+    pitch to another, and rafter length scales directly with it.
+    """
+    sheet = plan.sheet(sheet_id)
+    if sheet is None or sheet.is_raster:
+        return None, {}
+    tally: dict[str, int] = {}
+    for w in sheet.drawing_words:
+        if PITCH.fullmatch(w.text):
+            tally[w.text] = tally.get(w.text, 0) + 1
+    if not tally:
+        return None, {}
+    dominant = max(tally, key=lambda k: tally[k])
+    return dominant, tally
 
 
 def required(plan: PlanSet) -> GeometryRequest:

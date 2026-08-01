@@ -123,7 +123,9 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--standards", type=Path, help="override framing standards file")
     ap.add_argument("--schedule-sheet", default="S1.0", help="sheet to read schedules from")
     ap.add_argument(
-        "--pitch", default="4:12", help="roof pitch for rafter length (default 4:12)"
+        "--pitch",
+        default=None,
+        help="roof pitch for rafter length; read off the roof plan when omitted",
     )
     ap.add_argument("--json", action="store_true", help="emit JSON instead of text")
     args = ap.parse_args(argv)
@@ -148,10 +150,15 @@ def main(argv: list[str] | None = None) -> int:
         with open(args.measurements) as fh:
             geom.apply(yaml.safe_load(fh) or {})
 
+    detected, tally = geometry.detect_pitch(plan)
+    pitch = args.pitch or detected or "4:12"
+
     lumber_list = None
     if geom.complete:
         try:
-            lumber_list = lumber.build(scheds, mem, geom, std, pitch=args.pitch)
+            lumber_list = lumber.build(
+                scheds, mem, geom, std, pitch=pitch, notes=notes
+            )
         except lumber.IncompleteInput as exc:
             print(f"error: {exc}", file=sys.stderr)
             return 2

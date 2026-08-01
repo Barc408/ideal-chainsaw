@@ -12,14 +12,16 @@ from barc_takeoff.standards import Standards
 
 KEYS = (
     "roof_area_sf", "ridge_length_ft", "rafter_run_ft", "roof_perimeter_ft",
-    "post_count", "post_height_ft", "new_wall_lf", "wall_height_ft",
+    "eave_length_ft", "post_count", "post_height_ft", "new_wall_lf",
+    "wall_height_ft",
 )
 
 
 def make_geom(**overrides) -> GeometryRequest:
     base = {
         "roof_area_sf": 480, "ridge_length_ft": 24, "rafter_run_ft": 11,
-        "roof_perimeter_ft": 68, "post_count": 3, "post_height_ft": 9,
+        "roof_perimeter_ft": 68, "eave_length_ft": 48,
+        "post_count": 3, "post_height_ft": 9,
         "new_wall_lf": 0, "wall_height_ft": 8,
     }
     base.update(overrides)
@@ -210,3 +212,72 @@ class TestHonesty:
         mem = MemberTakeoff(members=[rafter_member(), column("4x6")])
         result = build(scheds, mem, make_geom(post_count=1), standards)
         assert all(i.source for i in result.items)
+
+
+class FakeNote:
+    def __init__(self, code, text, scope="new"):
+        self.code, self.text = code, text
+        self.scope = type("S", (), {"value": scope})()
+
+
+ROOFING_NOTES = {
+    "07.08": FakeNote("07.08", "CLASS 'A' COMPOSITION SHINGLE ROOFING"),
+    "05.03": FakeNote("05.03", "GUTTER TO MATCH (E) IN STYLE AND COLOR"),
+    "07.04": FakeNote("07.04", "(E) ROOF FINISH AND FRAMING TO BE REMOVED", "demolish"),
+}
+
+
+class TestRoofingAndOtherTrades:
+    def test_shingles_are_counted_in_squares(self, scheds, standards):
+        result = build(scheds, MemberTakeoff(), make_geom(roof_area_sf=480),
+                       standards, notes=ROOFING_NOTES)
+        sq = next(i for i in result.items if "shingle" in i.description.lower())
+        assert sq.unit == "squares"
+        assert sq.quantity == 6  # 480/100 = 4.8, +15% -> 5.52 -> 6
+
+    def test_underlayment_ambiguity_at_4_12_is_flagged(self, scheds, standards):
+        """The keynote wants 2 layers 'between 2:12 and 4:12'; 4:12 is the edge."""
+        result = build(scheds, MemberTakeoff(), make_geom(), standards,
+                       pitch="4:12", notes=ROOFING_NOTES)
+        assert any("ambiguous" in w.lower() for w in result.warnings)
+
+    def test_steep_roof_takes_one_underlayment_layer(self, scheds, standards):
+        result = build(scheds, MemberTakeoff(), make_geom(), standards,
+                       pitch="8:12", notes=ROOFING_NOTES)
+        felt = next(i for i in result.items if "Underlayment" in i.description)
+        assert "1 layer" in felt.description
+
+    def test_gutter_uses_eave_length_not_perimeter(self, scheds, standards):
+        result = build(scheds, MemberTakeoff(), make_geom(roof_perimeter_ft=68,
+                       eave_length_ft=48), standards, notes=ROOFING_NOTES)
+        gutter = next(i for i in result.items if "Gutter" in i.description)
+        assert gutter.quantity == 48
+
+    def test_linear_items_carry_footage_as_quantity(self, scheds, standards):
+        """quantity=1 with the footage hidden in length_ft would order one stick."""
+        result = build(scheds, MemberTakeoff(), make_geom(roof_perimeter_ft=68),
+                       standards, notes=ROOFING_NOTES)
+        fascia = next(i for i in result.items if i.description == "Fascia")
+        assert fascia.unit == "lf" and fascia.quantity == 68
+
+    def test_rebar_comes_from_the_pad_schedule(self, scheds, standards):
+        mem = MemberTakeoff(members=[column("4x6"), column("6x6")])
+        result = build(scheds, mem, make_geom(post_count=2), standards)
+        rebar = next(i for i in result.items if "rebar" in i.description.lower())
+        assert rebar.quantity == 3 * 2 * 2  # 3 bars each way, 2 pads
+        assert rebar.category == "concrete"
+
+    def test_post_caps_are_listed_alongside_bases(self, scheds, standards):
+        mem = MemberTakeoff(members=[column("4x6")])
+        result = build(scheds, mem, make_geom(post_count=1), standards)
+        assert any("Post cap" in i.description for i in result.items)
+
+    def test_demolition_is_scope_without_invented_quantities(self, scheds, standards):
+        result = build(scheds, MemberTakeoff(), make_geom(), standards,
+                       notes=ROOFING_NOTES)
+        demo = [i for i in result.items if i.category == "demolition"]
+        assert demo and all(i.quantity == 0 and i.unit == "scope" for i in demo)
+
+    def test_out_of_scope_trades_are_stated(self, scheds, standards):
+        result = build(scheds, MemberTakeoff(), make_geom(), standards)
+        assert any("electrical" in n for n in result.not_covered)

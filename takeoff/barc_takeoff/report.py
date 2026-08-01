@@ -83,15 +83,25 @@ def render(
         out.append("\nColumn connectors:")
         for c in scheds.connectors:
             out.append(f"  {c.post:<12}base {c.base:<14}cap {c.cap}")
-    if scheds.shearwalls and scheds.shearwalls.needs_review:
+    if scheds.shearwalls:
+        sw = scheds.shearwalls
+        exact = sw.exact_rows()
         out.append(
-            "\nShearwall schedule extracted but NOT parsed into per-type values."
+            f"\nShearwall schedule - {len(exact)} row(s) parsed per type, "
+            f"{len(sw.merged_rows)} approximate:"
         )
-        out.append(
-            "  Cells merged across types cannot be told from tightly packed "
-            "distinct values\n  without the ruled cell boundaries. Read it off "
-            f"{scheds.shearwalls.sheet_id} directly."
-        )
+        out.append("  " + "property".ljust(22) + "".join(c.ljust(16) for c in sw.columns))
+        for label, vals in exact.items():
+            out.append(
+                "  " + label[:21].ljust(22)
+                + "".join((vals.get(c, "") or "-")[:15].ljust(16) for c in sw.columns)
+            )
+        if sw.merged_rows:
+            out.append(
+                "\n  ! " + ", ".join(sorted(sw.merged_rows)) + " hold cells merged "
+                "across types. A merged cell's\n    span cannot be recovered "
+                f"exactly; read those rows off {sw.sheet_id} directly."
+            )
 
     # ---- members ----------------------------------------------------------
     if members is not None:
@@ -161,17 +171,19 @@ def render(
             "measurements above\n(--measurements file.yaml) and re-run."
         )
     else:
-        out.append(
-            f"\n  {'item':<30}{'size':<16}{'len':>5}{'qty':>7}  unit"
-        )
-        out.append("  " + "-" * 66)
-        for it in lumber_list.items:
-            length = f"{it.length_ft:g}" if it.length_ft else "-"
-            qty = f"{it.quantity:g}"
+        for category, items in lumber_list.by_category().items():
+            out.append(f"\n  {category.upper()}")
             out.append(
-                f"  {it.description[:29]:<30}{str(it.size)[:15]:<16}"
-                f"{length:>5}{qty:>7}  {it.unit}"
+                f"  {'item':<44}{'size':<18}{'len':>5}{'qty':>7}  unit"
             )
+            out.append("  " + "-" * 82)
+            for it in items:
+                length = f"{it.length_ft:g}" if it.length_ft else "-"
+                qty = f"{it.quantity:g}"
+                out.append(
+                    f"  {it.description[:43]:<44}{str(it.size)[:17]:<18}"
+                    f"{length:>5}{qty:>7}  {it.unit}"
+                )
         out.append("\n  Provenance:")
         for it in lumber_list.items:
             out.append(f"    {it.description[:28]:<30} <- {it.source}")
@@ -186,6 +198,10 @@ def render(
             out.append("\n  NOT INCLUDED / UNVERIFIED:")
             for w in lumber_list.warnings:
                 out.append(f"    ! {w}")
+        if lumber_list.not_covered:
+            out.append("\n  OUT OF SCOPE for this tool (price separately):")
+            for n in lumber_list.not_covered:
+                out.append(f"    - {n}")
 
     if not standards.confirmed:
         out.append(

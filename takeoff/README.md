@@ -1,8 +1,10 @@
 # barc-takeoff
 
-Reads a residential plan set and pulls out what a framing takeoff needs:
-schedules, material specs, and the scope split between new work, demolition and
-existing construction. Internal tool for BARC Builder Group.
+Reads a residential plan set and pulls out what a takeoff needs: schedules,
+member callouts, material specs, and the scope split between new work,
+demolition and existing construction. Produces a materials list grouped by
+trade — framing, hardware, sheathing, roofing, concrete, demolition. Internal
+tool for BARC Builder Group.
 
 Status: **all four stages working.** Given the measurements the drawings omit,
 it produces a lumber list with provenance on every line. The framing standards
@@ -60,6 +62,7 @@ roof_area_sf: 480
 ridge_length_ft: 24
 rafter_run_ft: 11
 roof_perimeter_ft: 68
+eave_length_ft: 48
 post_count: 3
 post_height_ft: 9
 new_wall_lf: 0
@@ -76,7 +79,7 @@ Requires `poppler-utils` (`pdftotext`, `pdfinfo`) and `pyyaml`.
 | 2 | `tables`, `schedules`, `keynotes` | Rebuild schedules from coordinates; read keynotes and classify scope | Deterministic |
 | 2b | `members` | Read beam, column and rafter callouts annotated on the framing sheets | Deterministic |
 | 3 | `geometry` | State the measurements needed; offer dimensions actually printed on the sheets as candidates | Human supplies values |
-| 4 | `lumber` | Apply BARC standards to produce the lumber list | Arithmetic, fully traced |
+| 4 | `lumber` | Apply BARC standards to produce the materials list | Arithmetic, fully traced |
 
 Stage 3 is isolated on purpose. Its uncertainty is the kind that produces a
 wrong lumber order, so it is kept out of stages 1–2 rather than blended into
@@ -124,13 +127,37 @@ worse outcome than an admission:
   the *existing* rafters underneath; the new roof rafters are tagged `RR`.
   Reading the wrong tag would have priced rafters that are already built.
 
+## Scope of the estimate
+
+The list covers framing, post hardware, sheathing, roof covering, footing
+concrete and rebar, and enumerates the demolition scope. It states its own
+boundary rather than leaving it to be inferred — every run prints the trades it
+does **not** cover (electrical, plumbing, interior finishes, site work,
+shearwall sheathing and hold-downs).
+
+Note that on a roof-replacement scope like the reference set, a roof-heavy list
+is the correct answer, not a truncated one: the keynotes show the house itself
+marked "NO WORK". On a set with more scope, the same rules produce wall framing,
+studs, plates and insulation — those paths run when `new_wall_lf` is non-zero.
+
 ## Known limits
 
-- **The shearwall schedule is extracted but not parsed into per-type values.**
-  Cells merged across types cannot be distinguished from six tightly packed
-  distinct values without the ruled cell boundaries, which are vector art and
-  invisible to text extraction. It is flagged for manual reading rather than
-  parsed into something plausible but possibly wrong.
+- **The shearwall schedule parses per type except for its merged rows.** A cell
+  merged across types is told apart from a row of six tightly packed values by
+  whether a word straddles a column boundary: merged text flows across the
+  boundary it covers, per-column values stay centred in their own cell. On the
+  reference set that resolves 11 rows exactly — nailing, plate fastening,
+  framing angles, anchor bolts, MASA spacing — and flags 3 (framing, sheathing,
+  roof nails) whose merge span cannot be recovered exactly.
+- **TPO area is not derived.** The low-slope extent is not dimensioned, so the
+  line is listed at zero with a warning rather than estimated.
+- **Underlayment layers are ambiguous at 4:12.** The roofing keynote requires
+  two layers "for slopes between 2:12 and 4:12" and one otherwise; a 4:12 roof
+  sits exactly on that boundary. Two layers are listed and the ambiguity is
+  flagged rather than silently resolved.
+- **Demolition is scope, not quantity.** Disposal volume depends on what is
+  found once the roof is opened, so the notes are enumerated and quantities
+  left to the estimator.
 - **Raster sheets need a different tool** — OCR or a vision pass. Not built.
 - **The standards file is seeded with plausible defaults, not BARC's numbers.**
   It is marked `review_status: UNCONFIRMED` and every report says so until a
@@ -138,8 +165,9 @@ worse outcome than an admission:
 - **Keynote text carries kerning artefacts** from the CAD export (`MA TCH`,
   `REMOV ED`). Matching ignores whitespace entirely, so classification is
   unaffected, but displayed text looks odd.
-- **Rafter pitch is a flag, not an extraction** (`--pitch`, default 4:12). The
-  roof plan does print `4:12`, so this could be read directly.
+- **Roof pitch is read off the roof plan** (`4:12` here, with `2:12` and `1:12`
+  also present on other planes); `--pitch` overrides. Only the dominant pitch is
+  applied, so a multi-slope roof needs checking.
 - **Beam lengths are not computed** — beams are listed one-per-callout with
   length to be confirmed, since the plans do not dimension them.
 - **Only tested against one office's sheets** (Brad Cox Architect / MHA
