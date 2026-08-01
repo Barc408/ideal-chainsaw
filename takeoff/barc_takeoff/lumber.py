@@ -136,10 +136,16 @@ def build(
             + ". Their sizes are NOT in this list - read them off the framing "
             "sheets and add them."
         )
-    if scheds.shearwalls and scheds.shearwalls.needs_review:
+    if scheds.shearwalls:
+        merged = sorted(scheds.shearwalls.merged_rows)
+        detail = (
+            f" Its {', '.join(merged)} row(s) hold merged cells and are "
+            "approximate." if merged else ""
+        )
         out.warnings.append(
-            "Shearwall schedule was not parsed per type; any shearwall framing, "
-            "sheathing and hardware is excluded from this list."
+            "No shearwall quantities are in this list: the schedule specifies "
+            "how a shearwall is built, but which walls are shearwalls and how "
+            "long they run is not a measurement this tool collects." + detail
         )
 
     # ---- rafters ----------------------------------------------------------
