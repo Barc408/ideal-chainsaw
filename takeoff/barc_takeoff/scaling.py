@@ -11,9 +11,9 @@ What this module does and does not do matters.
 It establishes the scale, and it does so by measurement rather than assumption:
 the elevation datums are labelled at known heights, so the distance between two
 of them in points divided by their difference in feet is the scale. On the
-reference set three independent datum pairs agree at 18.00 pt/ft exactly, and
-the shared column grid spans an identical 1193 pt on the architect's and the
-engineer's sheets, confirming both offices plotted at the same scale.
+reference set eight datum pairs agree at 18.00 pt/ft, and the shared column grid
+spans an identical 1194 pt on the architect's and the engineer's sheets,
+confirming both offices plotted at the same scale.
 
 It does not try to decide which linework constitutes a given member. That was
 attempted and abandoned: matching a beam to the nearest line of the right
